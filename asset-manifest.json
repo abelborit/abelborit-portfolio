@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/abelborit-portfolio/static/css/main.8b3899bd.css",
+    "main.js": "/abelborit-portfolio/static/js/main.0b907d84.js",
+    "static/js/787.2eed6f62.chunk.js": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js",
+    "static/media/hero-image-optimized.jpg": "/abelborit-portfolio/static/media/hero-image-optimized.84ca63c9235614ebb78a.jpg",
+    "static/media/curriculum.pdf": "/abelborit-portfolio/static/media/curriculum.f10c1a82b021bf285545.pdf",
+    "static/media/profile-optimized.jpg": "/abelborit-portfolio/static/media/profile-optimized.b86f7e752b8fb10b7c85.jpg",
+    "index.html": "/abelborit-portfolio/index.html",
+    "main.8b3899bd.css.map": "/abelborit-portfolio/static/css/main.8b3899bd.css.map",
+    "main.0b907d84.js.map": "/abelborit-portfolio/static/js/main.0b907d84.js.map",
+    "787.2eed6f62.chunk.js.map": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8b3899bd.css",
+    "static/js/main.0b907d84.js"
+  ]
+}
