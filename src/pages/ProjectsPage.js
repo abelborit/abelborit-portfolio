@@ -5,9 +5,9 @@ const PROYECTOS = [
   {
     title: "Portafolio - CV",
     description:
-      "Este es mi portafolio digital, es la representación de lo que he aprendido y consolidado en las diferentes tecnologías de HTML, CSS, JavaScript y React.",
-    urlRepository: "https://github.com/abelborit/abelborit.github.io",
-    urlProject: "https://abelborit.github.io/",
+      "Este es mi portafolio digital, es la representación de lo que he aprendido y consolidado en las diferentes tecnologías de React JS, JavaScript, HTML y CSS.",
+    urlRepository: "https://github.com/abelborit/abelborit-portfolio",
+    urlProject: "https://abelborit.github.io/abelborit-portfolio/",
   },
   /* **************************************************************************************************** */
   {

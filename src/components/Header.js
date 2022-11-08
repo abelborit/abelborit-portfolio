@@ -1,13 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Navbar } from "./Navbar/Navbar";
 import "./Header.css";
 
 export const Header = (props) => {
+  const navigate = useNavigate();
+
+  const hanldeClick = () => {
+    navigate(-1);
+  };
+
   return (
     <header className="header">
       <div className="link-name">
-        <Link to="/">AbelBorit</Link>
+        <button className="link-name-btn" onClick={hanldeClick}>
+          AbelBorit
+        </button>
       </div>
 
       <Navbar
