@@ -12,7 +12,7 @@ export const HeroImage = () => {
             <div className="typewriter">
               <h1>Abel Borit Guitton</h1>
             </div>
-            <h3>Ingeniero Mecánico Electricista & Front-End Developer</h3>
+            <h3>Front-End Developer con Grado en Ingeniería</h3>
             <p>
               Siento curiosidad por la tecnología y creo que la transformación
               digital será la llave para resolver retos en el futuro. Disfruto

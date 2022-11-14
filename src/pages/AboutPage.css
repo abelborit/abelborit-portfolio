@@ -143,7 +143,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  width: 55%;
+  width: 140px;
   text-align: center;
   background-color: rgba(236, 240, 241, 0.3);
   box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
@@ -161,7 +161,7 @@
 .curriculum-btn a::before {
   content: "";
   width: 0;
-  height: 350%;
+  height: 450%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -200,14 +200,6 @@
     height: auto;
     margin: auto;
     margin-top: 7rem;
-  }
-
-  .curriculum-btn a {
-    width: 25%;
-  }
-
-  .curriculum-btn a::before {
-    height: 480%;
   }
 }
 
@@ -258,7 +250,7 @@
   }
 
   .curriculum-btn a {
-    width: 15%;
+    width: 150px;
   }
 
   .curriculum-btn a::before {

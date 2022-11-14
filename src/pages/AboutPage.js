@@ -1,6 +1,6 @@
 import React from "react";
 import profileCompressed from "../assets/optimized-images/profile-optimized.jpg";
-import curriculumPDF from "../assets/curriculum.pdf";
+import curriculumPDF from "../assets/AbelBoritCurriculumVitae.pdf";
 import "./AboutPage.css";
 
 const HABILIDADES = [
@@ -34,15 +34,15 @@ export const AboutPage = (props) => {
         <div className="about-bio">
           <div className="about-bio-title">
             <h3>Abel Borit Guitton</h3>
-            <h4>Ingeniero Mecánico Electricista & Front-End Developer</h4>
+            <h4>Front-End Developer con Grado en Ingeniería</h4>
           </div>
 
           <div className="about-bio-info">
             <p>
-              Soy Ingeniero Mecánico Electricista & Front-End Developer. Me
-              considero una persona responsable y proactiva, con capacidad de
-              liderazgo, con buen manejo en las redes interpersonales y con la
-              aptitud de trabajar en equipo.
+              Soy Front-End Developer con grado en ingeniería. Me considero una
+              persona responsable y proactiva, con capacidad de liderazgo, con
+              buen manejo en las redes interpersonales y con la aptitud de
+              trabajar en equipo.
             </p>
             <br />
             <p>
@@ -77,7 +77,7 @@ export const AboutPage = (props) => {
         </div>
 
         <div className="curriculum-btn">
-          <a href={curriculumPDF} download>
+          <a href={curriculumPDF} download="AbelBorit-CurriculumVitae">
             Descargar CV
           </a>
         </div>
