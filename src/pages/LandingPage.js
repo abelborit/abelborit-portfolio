@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
-import { Header } from "../components/Header";
-import { ScrollTopBtn } from "../components/ScrollTopBtn";
-import { AboutPage } from "./AboutPage";
-import { ProjectsPage } from "./ProjectsPage";
-import { ResumenPage } from "./ResumenPage";
-import ContactPage from "./ContactPage";
+import { Header } from "../components/Header/Header";
+import { ScrollTopBtn } from "../components/ScrollTopBtn/ScrollTopBtn";
+import { AboutPage } from "./AboutPage/AboutPage";
+import { ResumenPage } from "./ResumenPage/ResumenPage";
+import { ProjectsPage } from "./ProjectsPage/ProjectsPage";
+import { ContactPage } from "./ContactPage/ContactPage";
 
 const divisionSection = (
   <div className="section-division">

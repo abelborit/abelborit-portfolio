@@ -23,7 +23,7 @@ export const HeroImage = () => {
           </div>
 
           <div className="hero-image-pages">
-            <Link to="/home">Explorar</Link>
+            <Link to="home">Explorar</Link>
           </div>
 
           <div className="hero-image-media">

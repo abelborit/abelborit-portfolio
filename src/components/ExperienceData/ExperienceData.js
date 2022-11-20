@@ -12,8 +12,8 @@ const EXPERIENCE = [
     title: "Practicante de Mantenimiento",
     description:
       "Realicé prácticas de ingeniería mecánica eléctrica en el área de mantenimiento donde fortalecí y aprendí nuevos conocimientos y al estar trabajando a la par de un gran número de personal pude mejorar habilidades interpersonales y de liderazgo.",
-    since: "2022",
-    to: "Ahora",
+    since: "2021",
+    to: "2022",
   },
 ];
 

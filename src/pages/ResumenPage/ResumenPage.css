@@ -10,7 +10,7 @@
   width: 80%;
   height: 2px;
   background-color: #212529;
-  opacity: 0.5;
+  opacity: 0.4;
   margin: 2.5rem auto;
 }
 
@@ -88,13 +88,15 @@
   border: 2px solid #287864;
   border-top: 8px solid #287864;
   border-bottom: 8px solid #287864;
+  border-radius: 60px 40px 80px 40px;
 }
 
 .card-info h4 {
+  width: 100%;
   text-align: left;
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: #212529;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .card-info p {

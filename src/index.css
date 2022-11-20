@@ -43,9 +43,28 @@ body {
   /* ************************************** DARK MODE *********************************************** */
 }
 
+/* ***** CSS a la barra de scroll ***** */
+body::-webkit-scrollbar {
+  width: 0.8vw;
+}
+
+body::-webkit-scrollbar-track {
+  background: #494d51;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #1ec896;
+  border-radius: 30px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: #287864;
+}
+/* ************************************ */
+
+/* ********** CSS Generales ********** */
 a {
   text-decoration: none;
-  color: #1ec896;
 }
 
 img {
@@ -55,7 +74,6 @@ img {
 
 .section {
   background-color: rgba(0, 0, 0, 0.2);
-  /* background-color: rgba(230, 230, 230, 0.2); */
   width: 98.5%;
   max-width: 1400px;
   height: 100%;
@@ -122,3 +140,4 @@ img {
   background-color: #212529;
   border-radius: 50%;
 }
+/* *********************************** */

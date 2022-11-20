@@ -1,4 +1,3 @@
-/* *************** Header *************** */
 .header {
   z-index: 999;
   position: sticky;
@@ -15,7 +14,6 @@
 
 .header .link-name,
 .header .link-media {
-  /* width: 50%; */
   height: 100%;
   display: flex;
   flex-direction: row;
@@ -73,6 +71,7 @@
   border-radius: 4px;
 }
 
+/* **************************************** RESPONSIVE DESIGN **************************************** */
 @media screen and (min-width: 768px) {
   .header .link-name,
   .header .link-media {
@@ -103,7 +102,9 @@
     height: 34px;
   }
 }
+/* *************************************************************************************************** */
 
+/* **************************************** RESPONSIVE DESIGN **************************************** */
 @media screen and (min-width: 1024px) {
   .header .link-name,
   .header .link-media {
@@ -130,3 +131,4 @@
     height: 36px;
   }
 }
+/* *************************************************************************************************** */

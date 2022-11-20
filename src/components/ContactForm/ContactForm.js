@@ -1,6 +1,6 @@
 import React from "react";
-import Loader from "../components/Loader";
-import { useForm } from "../hooks/useForm";
+import Loader from "../Loader/Loader";
+import { useForm } from "../../hooks/useForm";
 
 export const ContactForm = () => {
   const {

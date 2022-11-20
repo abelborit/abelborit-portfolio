@@ -1,6 +1,6 @@
 import React from "react";
-import { EducationData } from "../components/EducationData";
-import { ExperienceData } from "../components/ExperienceData";
+import { EducationData } from "../../components/EducationData/EducationData";
+import { ExperienceData } from "../../components/ExperienceData/ExperienceData";
 import "./ResumenPage.css";
 
 export const ResumenPage = (props) => {
