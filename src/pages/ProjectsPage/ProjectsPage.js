@@ -11,11 +11,35 @@ const PROYECTOS = [
   },
   /* **************************************************************************************************** */
   {
+    title: "React API Pokemon",
+    description:
+      "Proyecto con React donde se usará Fetch y la API de Pokemon para obtener los datos necesarios y mostarlos en distintas cards o tarjetas donde a su vez al entrar a cada card nos mostrará más información sobre cada elemento.",
+    urlRepository: "https://github.com/abelborit/react-api-pokemon",
+    urlProject: "https://abelborit.github.io/react-api-pokemon/",
+  },
+  /* **************************************************************************************************** */
+  {
+    title: "React API Country",
+    description:
+      "Proyecto con React donde se usará Fetch y API de REST Countries para obtener los datos necesarios y mostarlos en distintas cards o tarjetas donde a su vez al entrar a cada card nos mostrará más información sobre cada elemento.",
+    urlRepository: "https://github.com/abelborit/react-api-country",
+    urlProject: "https://abelborit.github.io/react-api-country/",
+  },
+  /* **************************************************************************************************** */
+  {
     title: "Contact Form",
     description:
-      "Este es un modelo para utilizar un formulario de contacto con Fetch y el API de Form Submit.",
+      "Este es un modelo para utilizar un formulario de contacto con Fetch y el API de Form Submit y a su vez cuenta con validaciones.",
     urlRepository: "https://github.com/abelborit/contact-form",
     urlProject: "https://abelborit.github.io/contact-form/",
+  },
+  /* **************************************************************************************************** */
+  {
+    title: "API Pokemon",
+    description:
+      "Proyecto con Javascript donde se usará Fetch y la API de Pokemon para obtener los datos necesarios y mostarlos en distintas cards o tarjetas.",
+    urlRepository: "https://github.com/abelborit/api-pokemon",
+    urlProject: "https://abelborit.github.io/api-pokemon/",
   },
   /* **************************************************************************************************** */
   {
@@ -24,22 +48,6 @@ const PROYECTOS = [
       "Aquí podrás encontrar diferentes tipos de loaders para poder reutilizarlos. Escoge el que más te guste y añádelo en tu próximo proyecto.",
     urlRepository: "https://github.com/abelborit/loaders",
     urlProject: "https://abelborit.github.io/loaders/",
-  },
-  /* **************************************************************************************************** */
-  {
-    title: "API Pokemon",
-    description:
-      "Proyecto con Javascript donde se usará Fetch y la API de pokemon.",
-    urlRepository: "https://github.com/abelborit/api-pokemon",
-    urlProject: "https://abelborit.github.io/api-pokemon/",
-  },
-  /* **************************************************************************************************** */
-  {
-    title: "React API Pokemon",
-    description:
-      "Proyecto con React donde se usará Fetch y la API de pokemon donde al entrar a cada card nos mostrará más información sobre el elemento.",
-    urlRepository: "https://github.com/abelborit/react-api-pokemon",
-    urlProject: "https://abelborit.github.io/react-api-pokemon/",
   },
 ];
 

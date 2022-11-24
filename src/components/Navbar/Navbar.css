@@ -22,6 +22,30 @@
   font-size: 1.2rem;
   color: #1ec896;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+.link-btn::before {
+  position: absolute;
+  bottom: 0;
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: #ecf0f1;
+  transition: all 0.3s;
+}
+
+.link-btn:hover:before {
+  width: 100%;
+}
+
+.bottom-line::before {
+  left: 50%;
+}
+
+.bottom-line:hover:before {
+  left: 0;
 }
 
 .link-btn:hover {

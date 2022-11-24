@@ -12,7 +12,7 @@ export const NavbarDesktop = (props) => {
 
       <ul>
         <li
-          className="link-btn"
+          className="link-btn bottom-line"
           onClick={() =>
             props.handleScrollToSection(props.referencias.aboutREF)
           }
@@ -21,7 +21,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn"
+          className="link-btn bottom-line"
           onClick={() =>
             props.handleScrollToSection(props.referencias.resumenREF)
           }
@@ -30,7 +30,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn"
+          className="link-btn bottom-line"
           onClick={() =>
             props.handleScrollToSection(props.referencias.projectREF)
           }
@@ -39,7 +39,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn"
+          className="link-btn bottom-line"
           onClick={() =>
             props.handleScrollToSection(props.referencias.contactREF)
           }
