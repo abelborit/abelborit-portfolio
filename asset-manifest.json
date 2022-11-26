@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/abelborit-portfolio/static/css/main.4f0ea628.css",
-    "main.js": "/abelborit-portfolio/static/js/main.72a94fc5.js",
+    "main.css": "/abelborit-portfolio/static/css/main.8f257b0f.css",
+    "main.js": "/abelborit-portfolio/static/js/main.7b9753e2.js",
     "static/js/787.2eed6f62.chunk.js": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js",
     "static/media/hero-image-optimized.jpg": "/abelborit-portfolio/static/media/hero-image-optimized.84ca63c9235614ebb78a.jpg",
     "static/media/AbelBoritCurriculumVitae.pdf": "/abelborit-portfolio/static/media/AbelBoritCurriculumVitae.9d8655b0eab44e2209e4.pdf",
     "static/media/profile-optimized.jpg": "/abelborit-portfolio/static/media/profile-optimized.b86f7e752b8fb10b7c85.jpg",
     "index.html": "/abelborit-portfolio/index.html",
-    "main.4f0ea628.css.map": "/abelborit-portfolio/static/css/main.4f0ea628.css.map",
-    "main.72a94fc5.js.map": "/abelborit-portfolio/static/js/main.72a94fc5.js.map",
+    "main.8f257b0f.css.map": "/abelborit-portfolio/static/css/main.8f257b0f.css.map",
+    "main.7b9753e2.js.map": "/abelborit-portfolio/static/js/main.7b9753e2.js.map",
     "787.2eed6f62.chunk.js.map": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4f0ea628.css",
-    "static/js/main.72a94fc5.js"
+    "static/css/main.8f257b0f.css",
+    "static/js/main.7b9753e2.js"
   ]
 }
