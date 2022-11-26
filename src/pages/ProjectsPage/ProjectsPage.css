@@ -113,6 +113,10 @@
   transition: all 0.3s linear;
 }
 
+.project-card:hover {
+  transform: scale(0.96);
+}
+
 .project-card:hover .project-card-img svg {
   animation: svgScale 1.5s linear infinite alternate;
 }
@@ -181,6 +185,7 @@
 }
 
 .project-card-btn a:hover {
+  transform: scale(1.1);
   color: #ecf0f1;
   border-top: 4px solid #287864;
   border-bottom: 4px solid #287864;

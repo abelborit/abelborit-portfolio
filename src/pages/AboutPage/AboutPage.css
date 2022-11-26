@@ -9,35 +9,6 @@
     10px 10px 10px -10px rgba(0, 0, 0, 0.3);
   background-color: rgba(230, 230, 230, 0.6);
   border-radius: 30px;
-  backdrop-filter: blur(2px);
-  --gradient: linear-gradient(
-    to right,
-    rgba(33, 37, 41, 0.15),
-    rgba(240, 240, 240, 0.2),
-    rgba(33, 37, 41, 0.15)
-  );
-  position: relative;
-  background-image: var(--gradient);
-  background-size: 400%;
-  animation: gradientMove 5s infinite alternate;
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: left;
-  }
-  25% {
-    background-position: right;
-  }
-  50% {
-    background-position: left;
-  }
-  75% {
-    background-position: right;
-  }
-  100% {
-    background-position: left;
-  }
 }
 
 .about-bio {
@@ -176,7 +147,7 @@
   position: relative;
   overflow: hidden;
   z-index: 1;
-  width: 140px;
+  width: 130px;
   text-align: center;
   background-color: rgba(236, 240, 241, 0.3);
   box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
@@ -210,6 +181,7 @@
 }
 
 .curriculum-btn a:hover {
+  transform: scale(1.1);
   color: #ecf0f1;
   border-top: 4px solid #287864;
   border-bottom: 4px solid #287864;
@@ -280,10 +252,6 @@
   .curriculum-btn {
     margin-top: 2.5rem;
     grid-column: span 3;
-  }
-
-  .curriculum-btn a {
-    width: 150px;
   }
 
   .curriculum-btn a::before {

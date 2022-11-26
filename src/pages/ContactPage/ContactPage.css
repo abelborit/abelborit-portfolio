@@ -13,35 +13,6 @@
     10px 10px 10px -10px rgba(0, 0, 0, 0.4);
   background-color: rgba(20, 20, 20, 0.8);
   border-radius: 30px;
-  backdrop-filter: blur(2px);
-  --gradient: linear-gradient(
-    to right,
-    rgba(33, 37, 41, 0.05),
-    rgba(240, 240, 240, 0.08),
-    rgba(33, 37, 41, 0.05)
-  );
-  position: relative;
-  background-image: var(--gradient);
-  background-size: 400%;
-  animation: gradientMove 5s infinite alternate;
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: left;
-  }
-  25% {
-    background-position: right;
-  }
-  50% {
-    background-position: left;
-  }
-  75% {
-    background-position: right;
-  }
-  100% {
-    background-position: left;
-  }
 }
 
 .contact-form legend {
@@ -97,8 +68,8 @@
   display: block;
   margin: 2rem auto 1rem auto;
   font-weight: bold;
-  font-size: 1rem;
-  padding: 0.8rem;
+  font-size: 1.1rem;
+  padding: 0.6rem;
   cursor: pointer;
   outline: none;
   border: none;
@@ -113,6 +84,7 @@
 }
 
 .contact-form input[type="submit"]:hover {
+  transform: scale(1.1);
   color: #ffdbac;
   border-top: 3px solid #e0ac69;
   border-bottom: 3px solid #e0ac69;
@@ -181,15 +153,11 @@
   .contact-form legend:nth-child(2) {
     font-size: 2.1rem;
   }
-
-  .contact-form input[type="submit"] {
-    width: 30%;
-    font-size: 1.1rem;
-  }
 }
 
 @media screen and (min-width: 1024px) {
   .contact-form {
+    padding: 1rem 2.5rem;
     width: 70%;
     margin: auto;
     margin-top: 2.5rem;
@@ -201,9 +169,5 @@
 
   .contact-form legend:nth-child(2) {
     font-size: 2.2rem;
-  }
-
-  .contact-form input[type="submit"] {
-    width: 20%;
   }
 }
