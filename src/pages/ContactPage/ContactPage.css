@@ -8,9 +8,40 @@
   height: auto;
   padding: 1rem;
   margin-top: 1.5rem;
+  border: 1px solid rgba(33, 37, 41, 0.3);
+  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.4),
+    10px 10px 10px -10px rgba(0, 0, 0, 0.4);
   background-color: rgba(20, 20, 20, 0.8);
-  box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
   border-radius: 30px;
+  backdrop-filter: blur(2px);
+  --gradient: linear-gradient(
+    to right,
+    rgba(33, 37, 41, 0.05),
+    rgba(240, 240, 240, 0.08),
+    rgba(33, 37, 41, 0.05)
+  );
+  position: relative;
+  background-image: var(--gradient);
+  background-size: 400%;
+  animation: gradientMove 5s infinite alternate;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: left;
+  }
+  25% {
+    background-position: right;
+  }
+  50% {
+    background-position: left;
+  }
+  75% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
 }
 
 .contact-form legend {
@@ -60,29 +91,31 @@
 }
 
 .contact-form input[type="submit"] {
-  width: 50%;
+  width: 120px;
   height: auto;
+  text-align: center;
   display: block;
   margin: 2rem auto 1rem auto;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1rem;
   padding: 0.8rem;
   cursor: pointer;
   outline: none;
   border: none;
-  border-radius: 15px;
-  color: #ffdbac;
-  border-top: 3px solid #e0ac69;
-  border-bottom: 3px solid #e0ac69;
+  border-radius: 10px;
+  color: #ecf0f1;
+  border-top: 3px solid #ecf0f1;
+  border-bottom: 3px solid #ecf0f1;
   background-color: transparent;
-  box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
+  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.3),
+    10px 10px 10px -10px rgba(0, 0, 0, 0.3);
   transition: all 0.3s linear;
 }
 
 .contact-form input[type="submit"]:hover {
-  color: #ecf0f1;
-  border-top: 3px solid #ecf0f1;
-  border-bottom: 3px solid #ecf0f1;
+  color: #ffdbac;
+  border-top: 3px solid #e0ac69;
+  border-bottom: 3px solid #e0ac69;
   background-color: rgba(20, 20, 20, 0.2);
 }
 

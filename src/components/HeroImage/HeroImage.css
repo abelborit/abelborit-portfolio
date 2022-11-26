@@ -27,9 +27,41 @@
   text-align: center;
   width: 92%;
   height: auto;
-  background-color: rgba(0, 0, 0, 0.2);
   padding: 1.1rem;
+  border: 1px solid rgba(33, 37, 41, 0.3);
+  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 1),
+    10px 10px 10px -10px rgba(0, 0, 0, 1);
+  background-color: transparent;
   border-radius: 30px;
+  --gradient: linear-gradient(
+    to right,
+    rgba(33, 37, 41, 0.08),
+    rgba(240, 240, 240, 0.1),
+    rgba(33, 37, 41, 0.08)
+  );
+  position: relative;
+  background-image: var(--gradient);
+  background-size: 400%;
+  backdrop-filter: blur(2px);
+  animation: gradientMove 5s infinite alternate;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: left;
+  }
+  25% {
+    background-position: right;
+  }
+  50% {
+    background-position: left;
+  }
+  75% {
+    background-position: right;
+  }
+  100% {
+    background-position: left;
+  }
 }
 
 .hero-image-text {
@@ -53,7 +85,7 @@
   border-right: 0.15rem solid #e0ac69; /* The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  animation: typing 2.8s steps(40, end), blink-caret 0.75s step-end infinite;
+  animation: typing 2.5s steps(45, end), blink-caret 0.75s step-end infinite;
 }
 
 /* The typing effect */
@@ -193,7 +225,7 @@
     border-right: 0.15rem solid #e0ac69; /* The typwriter cursor */
     white-space: nowrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-    animation: typing 2.8s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation: typing 2.5s steps(45, end), blink-caret 0.75s step-end infinite;
   }
 
   /* The typing effect */
@@ -247,6 +279,13 @@
   .hero-image-content {
     width: 100%;
     max-width: 800px;
+
+    --gradient: linear-gradient(
+      to right,
+      rgba(33, 37, 41, 0.05),
+      rgba(240, 240, 240, 0.07),
+      rgba(33, 37, 41, 0.05)
+    );
   }
 
   .hero-image-text h2 {
