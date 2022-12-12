@@ -1,7 +1,7 @@
 import React from "react";
 import { EducationData } from "../../components/EducationData/EducationData";
 import { ExperienceData } from "../../components/ExperienceData/ExperienceData";
-import "./ResumenPage.css";
+import styles from "./ResumenPage.module.css";
 
 export const ResumenPage = (props) => {
   return (
@@ -11,9 +11,9 @@ export const ResumenPage = (props) => {
         <h4>Extracto</h4>
       </div>
 
-      <div className="resume-content">
+      <div className={styles.resume_content}>
         <EducationData></EducationData>
-        <div className="line"></div>
+        <div className={styles.line}></div>
         <ExperienceData></ExperienceData>
       </div>
     </section>

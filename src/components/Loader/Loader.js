@@ -1,20 +1,20 @@
 import React from "react";
-import "./Loader.css";
+import styles from "./Loader.module.css";
 
 const Loader = () => {
   return (
-    <div id="loader" class="loader none">
-      <div class="wave-loader">
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
-        <div class="wave"></div>
+    <div id="loader" title="sectionLoader">
+      <div className={styles.waveLoader}>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
+        <div className={styles.wave}></div>
       </div>
     </div>
   );

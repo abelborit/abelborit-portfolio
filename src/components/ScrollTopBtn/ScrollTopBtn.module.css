@@ -1,0 +1,137 @@
+.scrollTopBtn {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 999;
+  bottom: 1.25rem;
+  right: 1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 15px;
+  background-color: var(--backgroundColor);
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.4),
+    10px 10px 10px -10px rgba(0, 0, 0, 0.4);
+}
+
+.scrollTopBtn svg {
+  width: 30px;
+  height: 30px;
+  fill: var(--textColorWhite);
+  transition: all 0.2s linear;
+}
+
+.scrollTopBtn:hover svg {
+  fill: var(--primaryColor);
+  -webkit-animation: scaleBtn 0.4s infinite alternate;
+  animation: scaleBtn 0.4s infinite alternate;
+}
+
+@-webkit-keyframes scaleBtn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes scaleBtn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* *********************************************************** */
+.swashIn {
+  -webkit-animation-name: swashIn;
+  -webkit-animation-duration: 0.3s;
+  animation-name: swashIn;
+  animation-duration: 0.3s;
+}
+@-webkit-keyframes swashIn {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+
+@keyframes swashIn {
+  0% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+}
+
+/* *********************************************************** */
+.swashOut {
+  -webkit-animation-name: swashOut;
+  -webkit-animation-duration: 0.3s;
+  animation-name: swashOut;
+  animation-duration: 0.3s;
+}
+
+@-webkit-keyframes swashOut {
+  0% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+}
+
+@keyframes swashOut {
+  0% {
+    opacity: 1;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(1, 1);
+    transform: scale(1, 1);
+  }
+
+  100% {
+    opacity: 0;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    -webkit-transform: scale(0, 0);
+    transform: scale(0, 0);
+  }
+}

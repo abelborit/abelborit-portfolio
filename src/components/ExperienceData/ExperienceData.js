@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "../../pages/ResumenPage/ResumenPage.module.css";
 
 const EXPERIENCE = [
   {
     title: "Proyectos Personales",
     description:
-      "Actualmente me encuentro en la realización de proyectos personales para mejorar mis habilidades comoFront-End Developer.",
+      "Actualmente me encuentro en la realización de proyectos personales para mejorar mis habilidades como Front-End Developer.",
     since: "2022",
     to: "Ahora",
   },
@@ -19,16 +20,16 @@ const EXPERIENCE = [
 
 export const ExperienceData = () => {
   const listaExperiencia = EXPERIENCE.map((elemento, index) => (
-    <div className="content-card" key={index}>
-      <div className="card-date">
-        <div className="card-date-line"></div>
+    <div className={styles.content_card} key={index}>
+      <div className={styles.card_date}>
+        <div className={styles.card_date_line}></div>
         <span>{elemento.to}</span>
         <span>-</span>
         <span>{elemento.since}</span>
-        <div className="card-date-line"></div>
+        <div className={styles.card_date_line}></div>
       </div>
 
-      <div className="card-info">
+      <div className={`${styles.card_info} ${styles.gradientMove}`}>
         <h4>{elemento.title}</h4>
         <p>{elemento.description}</p>
       </div>
@@ -36,10 +37,12 @@ export const ExperienceData = () => {
   ));
 
   return (
-    <div className="resume-content-info">
+    <div className={styles.resume_content_info}>
       <h3>Mis Experiencias</h3>
 
-      <div className="resume-content-description">{listaExperiencia}</div>
+      <div className={styles.resume_content_description}>
+        {listaExperiencia}
+      </div>
     </div>
   );
 };

@@ -1,18 +1,12 @@
 import React from "react";
-// import { NavLink } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 export const NavbarDesktop = (props) => {
   return (
-    <nav className="link-page-desktop">
-      {/* <NavLink to="/home">Home</NavLink>
-      <NavLink to="/acerca">Acerca</NavLink>
-      <NavLink to="/resumen">Resumen</NavLink>
-      <NavLink to="/proyectos">Proyectos</NavLink>
-      <NavLink to="/contacto">Contacto</NavLink> */}
-
+    <nav className={styles.linkPage_desktop}>
       <ul>
         <li
-          className="link-btn bottom-line"
+          className={`${styles.link_btn} ${styles.bottom_line}`}
           onClick={() =>
             props.handleScrollToSection(props.referencias.aboutREF)
           }
@@ -21,7 +15,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn bottom-line"
+          className={`${styles.link_btn} ${styles.bottom_line}`}
           onClick={() =>
             props.handleScrollToSection(props.referencias.resumenREF)
           }
@@ -30,7 +24,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn bottom-line"
+          className={`${styles.link_btn} ${styles.bottom_line}`}
           onClick={() =>
             props.handleScrollToSection(props.referencias.projectREF)
           }
@@ -39,7 +33,7 @@ export const NavbarDesktop = (props) => {
         </li>
 
         <li
-          className="link-btn bottom-line"
+          className={`${styles.link_btn} ${styles.bottom_line}`}
           onClick={() =>
             props.handleScrollToSection(props.referencias.contactREF)
           }

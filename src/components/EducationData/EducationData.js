@@ -1,10 +1,11 @@
 import React from "react";
+import styles from "../../pages/ResumenPage/ResumenPage.module.css";
 
 const EDUCATION = [
   {
-    title: "React JS",
+    title: "React",
     description:
-      "Tengo conocimientos en la librería React JS para crear diversos componentes y con ellos diseñar interfaces de usuarios en SPA (Single Page Application)",
+      "Tengo conocimientos en la librería React para crear diversos componentes y con ellos diseñar interfaces de usuarios en SPA (Single Page Application)",
     since: "2022",
     to: "Ahora",
   },
@@ -40,16 +41,16 @@ const EDUCATION = [
 
 export const EducationData = () => {
   const listaEducacion = EDUCATION.map((elemento, index) => (
-    <div className="content-card" key={index}>
-      <div className="card-date">
-        <div className="card-date-line"></div>
+    <div className={styles.content_card} key={index}>
+      <div className={styles.card_date}>
+        <div className={styles.card_date_line}></div>
         <span>{elemento.to}</span>
         <span>-</span>
         <span>{elemento.since}</span>
-        <div className="card-date-line"></div>
+        <div className={styles.card_date_line}></div>
       </div>
 
-      <div className="card-info">
+      <div className={`${styles.card_info} ${styles.gradientMove}`}>
         <h4>{elemento.title}</h4>
         <p>{elemento.description}</p>
       </div>
@@ -57,10 +58,10 @@ export const EducationData = () => {
   ));
 
   return (
-    <div className="resume-content-info">
+    <div className={styles.resume_content_info}>
       <h3>Mi Educación</h3>
 
-      <div className="resume-content-description">{listaEducacion}</div>
+      <div className={styles.resume_content_description}>{listaEducacion}</div>
     </div>
   );
 };

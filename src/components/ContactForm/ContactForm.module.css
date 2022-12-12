@@ -1,0 +1,217 @@
+.contact_content {
+  width: 100%;
+  height: auto;
+}
+
+.contact_form {
+  width: 100%;
+  height: auto;
+  padding: 1rem;
+  /* margin-top: 1.5rem; */
+  border: 1px solid rgba(33, 37, 41, 0.3);
+  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.4),
+    10px 10px 10px -10px rgba(0, 0, 0, 0.4);
+  background-color: rgba(20, 20, 20, 0.8);
+  border-radius: 30px;
+}
+
+.contact_form legend {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 1rem auto;
+  color: var(--textColorWhite);
+  text-align: center;
+}
+
+.contact_form legend:nth-child(2) {
+  font-size: 1.7rem;
+  color: var(--primaryColor);
+  text-align: left;
+}
+
+.contact_form input[type="text"],
+.contact_form input[type="email"],
+.contact_form textarea {
+  font-family: sans-serif;
+  margin-top: 0.8rem;
+  padding: 0.6rem;
+  width: 100%;
+  height: 40px;
+  outline: none;
+  border-radius: 10px;
+  border: none;
+  background: transparent;
+  background-color: rgba(20, 20, 20, 0.2);
+  border-bottom: 3px solid var(--textColorWhite);
+  color: var(--textColorWhite);
+  font-size: 0.9rem;
+  box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
+  transition: border-bottom 0.2s linear;
+}
+.contact_form input[type="text"]:hover,
+.contact_form input[type="email"]:hover,
+.contact_form textarea:hover {
+  background-color: rgba(100, 100, 100, 0.4);
+}
+
+.contact_form input[type="text"]:focus,
+.contact_form input[type="email"]:focus,
+.contact_form textarea:focus {
+  background-color: rgba(100, 100, 100, 0.4);
+}
+
+.contact_form textarea {
+  resize: none;
+  height: 150px;
+}
+
+.contact_form *::placeholder {
+  /* en .contact_form a todos los elementos que tenga el atributo::placeholder */
+  color: #959595;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.btn_effect {
+  display: block;
+  margin: 2rem auto 1rem auto;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  width: 120px;
+  text-align: center;
+  background-color: var(--primaryColor);
+  box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
+  font-size: 1rem;
+  font-weight: bold;
+  color: #212529;
+  padding: 0.6rem;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+}
+
+.btn_effect::before {
+  content: "";
+  width: 0;
+  height: 450%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background: #212529;
+  transition: 0.4s linear;
+  display: block;
+  z-index: -1;
+}
+
+.btn_effect:hover::before {
+  width: 105%;
+}
+
+.btn_effect:hover {
+  color: #212529;
+  border: 1px solid #212529;
+  background-color: var(--textColorWhite);
+  -webkit-animation: scaleBtn 0.4s infinite alternate;
+  animation: scaleBtn 0.4s infinite alternate;
+}
+
+@-webkit-keyframes scaleBtn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes scaleBtn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.1);
+  }
+}
+
+/* ******************** INCORRECT RESPONSE & CORRECT RESPONSE ******************** */
+
+.incorrect_response {
+  width: 90%;
+  margin: 0.6rem auto;
+  color: var(--incorrectColor);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.correct_response {
+  width: 90%;
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.correct_response p {
+  color: var(--correctColor);
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.correct_response svg {
+  width: 40px;
+  fill: var(--correctColor);
+}
+
+.contact_form input[type="text"].input_incorrect,
+.contact_form input[type="email"].input_incorrect,
+.contact_form textarea.input_incorrect {
+  border-bottom: 3px solid var(--incorrectColor);
+  color: var(--incorrectColor);
+}
+
+.contact_form input[type="text"].input_correct,
+.contact_form input[type="email"].input_correct,
+.contact_form textarea.input_correct {
+  border-bottom: 3px solid var(--correctColor);
+}
+
+/* ******************************************************************************* */
+
+@media screen and (min-width: 768px) {
+  .contact_form {
+    width: 80%;
+    margin: auto;
+  }
+
+  .contact_form legend {
+    font-size: 1.4rem;
+  }
+
+  .contact_form legend:nth-child(2) {
+    font-size: 2.1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .contact_form {
+    padding: 1rem 2.5rem;
+    width: 70%;
+    margin: auto;
+  }
+
+  .contact_form legend {
+    font-size: 1.6rem;
+  }
+
+  .contact_form legend:nth-child(2) {
+    font-size: 2.2rem;
+  }
+}

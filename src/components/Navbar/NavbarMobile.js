@@ -1,13 +1,27 @@
 import React, { useState } from "react";
-// import { NavLink } from "react-router-dom";
+import styles from "./Navbar.module.css";
 
 export const NavbarMobile = (props) => {
   const [open, setOpen] = useState(false);
+  const [effectActive, setEffectActive] = useState(false);
+
+  const effectFunction = () => {
+    if (open === false) {
+      setOpen(!open);
+      setEffectActive(true);
+    } else {
+      setTimeout(() => {
+        setOpen(!open);
+      }, 450);
+
+      setEffectActive(false);
+    }
+  };
 
   const hamburgerBarsIcon = (
-    <button onClick={() => setOpen(!open)}>
+    <button onClick={effectFunction}>
       <svg
-        onClick={() => setOpen(!open)}
+        // onClick={() => setOpen(!open)}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 448 512"
       >
@@ -17,9 +31,9 @@ export const NavbarMobile = (props) => {
   );
 
   const hamburgerCloseIcon = (
-    <button onClick={() => setOpen(!open)}>
+    <button onClick={effectFunction}>
       <svg
-        onClick={() => setOpen(!open)}
+        // onClick={() => setOpen(!open)}
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 320 512"
       >
@@ -29,45 +43,65 @@ export const NavbarMobile = (props) => {
   );
 
   return (
-    <nav className="link-page-mobile">
+    <nav className={styles.linkPage_mobile}>
+      {open ? hamburgerCloseIcon : hamburgerBarsIcon}
+
       {open && (
-        <div className="links-mobile">
+        <div
+          className={`${styles.links_mobile} ${
+            effectActive ? styles.slideLeftReturn : styles.slideLeft
+          }`}
+
+          // className={styles.links_mobile}
+        >
           <ul>
             <li
-              className="link-btn"
+              className={styles.link_btn}
               onClick={() => {
                 props.handleScrollToSection(props.referencias.aboutREF);
-                true && setOpen(false);
+                setEffectActive(false);
+                setTimeout(() => {
+                  setOpen(false); // para cerrar el menú cuando se haga click
+                }, 450);
               }}
             >
               Acerca
             </li>
 
             <li
-              className="link-btn"
+              className={styles.link_btn}
               onClick={() => {
                 props.handleScrollToSection(props.referencias.resumenREF);
-                true && setOpen(false);
+                setEffectActive(false);
+                setTimeout(() => {
+                  setOpen(false); // para cerrar el menú cuando se haga click
+                }, 450);
               }}
             >
               Resumen
             </li>
 
             <li
-              className="link-btn"
+              className={styles.link_btn}
               onClick={() => {
                 props.handleScrollToSection(props.referencias.projectREF);
-                true && setOpen(false);
+                setEffectActive(false);
+                setTimeout(() => {
+                  setOpen(false); // para cerrar el menú cuando se haga click
+                }, 450);
               }}
             >
               Proyectos
             </li>
 
             <li
-              className="link-btn"
+              className={styles.link_btn}
               onClick={() => {
                 props.handleScrollToSection(props.referencias.contactREF);
-                true && setOpen(false);
+                setEffectActive(false);
+                setTimeout(() => {
+                  setOpen(false); // para cerrar el menú cuando se haga click
+                }, 450);
               }}
             >
               Contacto
@@ -75,8 +109,6 @@ export const NavbarMobile = (props) => {
           </ul>
         </div>
       )}
-
-      {open ? hamburgerCloseIcon : hamburgerBarsIcon}
     </nav>
   );
 };

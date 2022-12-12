@@ -7,13 +7,13 @@ import { ProjectsPage } from "./ProjectsPage/ProjectsPage";
 import { ContactPage } from "./ContactPage/ContactPage";
 
 const divisionSection = (
-  <div className="section-division">
-    <div className="section-division-line"></div>
-    <div className="section-division-circle"></div>
-    <div className="section-division-circle"></div>
-    <div className="section-division-circle"></div>
-    <div className="section-division-circle"></div>
-    <div className="section-division-line"></div>
+  <div className="sectionDivision">
+    <div className="sectionDivision-line"></div>
+    <div className="sectionDivision-circle"></div>
+    <div className="sectionDivision-circle"></div>
+    <div className="sectionDivision-circle"></div>
+    <div className="sectionDivision-circle"></div>
+    <div className="sectionDivision-line"></div>
   </div>
 );
 
