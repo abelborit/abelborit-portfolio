@@ -3,39 +3,25 @@ import styles from "../../pages/ResumenPage/ResumenPage.module.css";
 
 const EDUCATION = [
   {
-    title: "React",
+    title: "Front-End Developer",
     description:
-      "Tengo conocimientos en la librería React para crear diversos componentes y con ellos diseñar interfaces de usuarios en SPA (Single Page Application)",
-    since: "2022",
+      "Conocimientos de desarrollor Front-End usando diversas herramientas como React, JavaScript, HTML & CSS, entre otras.",
+    since: "2020",
     to: "Ahora",
   },
   {
-    title: "JavaScript",
+    title: "Grado de Ingeniero Mecánico Electricista",
     description:
-      "Tengo conocimientos en el lenguaje JavaScript para crear las funcionalidades requeridas en una aplicación.",
+      "Logro obtenido del Grado de Ingeniero de la carrera profesional de Ingeniería Mecánica Eléctrica.",
     since: "2022",
-    to: "Ahora",
+    to: "2022",
   },
   {
-    title: "HTML y CSS",
+    title: "Bachillerato Ingeniería Mecánica Eléctrica",
     description:
-      "Tengo conocimientos en HTML y CSS para realizar la estructura necesaria en la elaboración de páginas web y poder dar estilos y/o diseños creando la presentación de una aplicación.",
-    since: "2022",
-    to: "Ahora",
-  },
-  {
-    title: "Figma",
-    description:
-      "Tengo conocimientos en la herramienta Figma para diseñar y generar diferentes wireframes o interfaces previos al desarrollo en código.",
-    since: "2022",
-    to: "Ahora",
-  },
-  {
-    title: "Balsamiq",
-    description:
-      "Tengo conocimientos en la herramienta Balsamiq para diseñar y estructurar wireframes plasmando ideas en una representación visual.",
-    since: "2022",
-    to: "Ahora",
+      "Logro obtenido del Grado de Bachiller de la carrera profesional de Ingeniería Mecánica Eléctrica (Perteneciente al Décimo Superior). ",
+    since: "2015",
+    to: "2019",
   },
 ];
 
@@ -44,13 +30,14 @@ export const EducationData = () => {
     <div className={styles.content_card} key={index}>
       <div className={styles.card_date}>
         <div className={styles.card_date_line}></div>
-        <span>{elemento.to}</span>
-        <span>-</span>
         <span>{elemento.since}</span>
+        <span>-</span>
+        <span>{elemento.to}</span>
         <div className={styles.card_date_line}></div>
       </div>
 
-      <div className={`${styles.card_info} ${styles.gradientMove}`}>
+      {/* <div className={`${styles.card_info} ${styles.gradientMove}`}> */}
+      <div className={styles.card_info}>
         <h4>{elemento.title}</h4>
         <p>{elemento.description}</p>
       </div>

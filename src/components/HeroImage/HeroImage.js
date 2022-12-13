@@ -11,7 +11,8 @@ export const HeroImage = () => {
             <div className={styles.heroImage_text}>
               <h2>Hey, yo soy</h2>
 
-              <h1 className={styles.typeWriter}>Abel Borit Guitton</h1>
+              {/* <h1 className={styles.typeWriter}>Abel Borit Guitton</h1> */}
+              <h1>Abel Borit Guitton</h1>
 
               <h3>Front-End Developer con Grado en Ingeniería</h3>
               <p>

@@ -10,9 +10,16 @@ const EXPERIENCE = [
     to: "Ahora",
   },
   {
-    title: "Practicante de Mantenimiento",
+    title: "Practicante del Área de Mantenimiento",
     description:
       "Realicé prácticas de ingeniería mecánica eléctrica en el área de mantenimiento donde fortalecí y aprendí nuevos conocimientos y al estar trabajando a la par de un gran número de personal pude mejorar habilidades interpersonales y de liderazgo.",
+    since: "2021",
+    to: "2022",
+  },
+  {
+    title: "Desarrollo de páginas web",
+    description:
+      "Maquetación y desarrollo de páginas web, creación de UI, uso de metodologías de UX.",
     since: "2021",
     to: "2022",
   },
@@ -23,13 +30,14 @@ export const ExperienceData = () => {
     <div className={styles.content_card} key={index}>
       <div className={styles.card_date}>
         <div className={styles.card_date_line}></div>
-        <span>{elemento.to}</span>
-        <span>-</span>
         <span>{elemento.since}</span>
+        <span>-</span>
+        <span>{elemento.to}</span>
         <div className={styles.card_date_line}></div>
       </div>
 
-      <div className={`${styles.card_info} ${styles.gradientMove}`}>
+      {/* <div className={`${styles.card_info} ${styles.gradientMove}`}> */}
+      <div className={styles.card_info}>
         <h4>{elemento.title}</h4>
         <p>{elemento.description}</p>
       </div>

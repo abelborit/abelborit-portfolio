@@ -70,13 +70,13 @@
   text-align: center;
   width: 90%;
   height: auto;
-  padding: 1.1rem;
-  border: 1px solid rgba(33, 37, 41, 0.3);
+  padding: 1rem;
   border-radius: 30px;
 }
 
 .gradientMove {
   background-color: transparent;
+  background-color: rgba(150, 150, 150, 0.05);
   box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 1),
     10px 10px 10px -10px rgba(0, 0, 0, 1);
   --gradient: linear-gradient(
@@ -91,7 +91,7 @@
   background-image: var(--gradient);
   background-size: 400%;
   backdrop-filter: blur(2px);
-  animation: gradientMove 6.5s infinite alternate;
+  animation: gradientMove 5.5s infinite alternate;
 }
 
 @keyframes gradientMove {
@@ -120,33 +120,39 @@
 .heroImage_text h2 {
   color: var(--textColorWhite);
   font-size: 2.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
 }
 
-.typeWriter {
+.heroImage_text h1 {
+  color: var(--primaryColor);
+  letter-spacing: 0.5px;
+  font-size: 1.75rem;
+  margin-bottom: 0.1rem;
+}
+
+/* .typeWriter {
   width: 103.5%;
   color: var(--primaryColor);
   font-size: 9.35vw;
-  overflow: hidden; /* Ensures the content is not revealed until the animation */
-  border-right: 0.15rem solid var(--accentColor); /* The typwriter cursor */
-  white-space: nowrap; /* Keeps the content on a single line */
-  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  overflow: hidden; Ensures the content is not revealed until the animation
+  border-right: 0.15rem solid var(--accentColor); The typwriter cursor
+  white-space: nowrap; Keeps the content on a single line
+  margin: 0 auto; Gives that scrolling effect as the typing happens
   animation: typing 2.5s steps(35, end), blink-caret 0.75s step-end infinite;
-}
+} */
 
 /* The typing effect */
-@keyframes typing {
+/* @keyframes typing {
   from {
     width: 0;
   }
   to {
     width: 100%;
   }
-}
+} */
 
 /* The typeWriter cursor effect */
-@keyframes blink-caret {
+/* @keyframes blink-caret {
   from,
   to {
     border-color: transparent;
@@ -154,14 +160,13 @@
   50% {
     border-color: var(--accentColor);
   }
-}
+} */
 
 .heroImage_text h3 {
   font-style: italic;
   color: var(--accentColor);
   letter-spacing: 0.5px;
   font-size: 0.75rem;
-  margin-top: 0.2rem;
   margin-bottom: 1.5rem;
 }
 
@@ -281,29 +286,34 @@
     font-size: 3.2rem;
   }
 
-  .typeWriter {
+  .heroImage_text h1 {
+    font-size: 3.8rem;
+    margin-bottom: 0.2rem;
+  }
+
+  /* .typeWriter {
     width: 100%;
     color: var(--primaryColor);
     font-size: 8.6vw;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: 0.15rem solid var(--accentColor); /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    overflow: hidden; Ensures the content is not revealed until the animation
+    border-right: 0.15rem solid var(--accentColor); The typwriter cursor
+    white-space: nowrap; Keeps the content on a single line
+    margin: 0 auto; Gives that scrolling effect as the typing happens
     animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  }
+  } */
 
   /* The typing effect */
-  @keyframes typing {
+  /* @keyframes typing {
     from {
       width: 0;
     }
     to {
       width: 100%;
     }
-  }
+  } */
 
   /* The typeWriter cursor effect */
-  @keyframes blink-caret {
+  /* @keyframes blink-caret {
     from,
     to {
       border-color: transparent;
@@ -311,7 +321,7 @@
     50% {
       border-color: var(--accentColor);
     }
-  }
+  } */
 
   .heroImage_text h3 {
     font-size: 0.95rem;
@@ -340,20 +350,24 @@
     font-size: 3.5rem;
   }
 
-  .typeWriter {
+  .heroImage_text h1 {
+    font-size: 4.5rem;
+  }
+
+  /*   .typeWriter {
     width: 100%;
     max-width: 630px;
     color: var(--primaryColor);
     font-size: 4.5rem;
-    overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: 0.15rem solid var(--accentColor); /* The typwriter cursor */
-    white-space: nowrap; /* Keeps the content on a single line */
-    margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+    overflow: hidden; Ensures the content is not revealed until the animation
+    border-right: 0.15rem solid var(--accentColor); The typwriter cursor
+    white-space: nowrap; Keeps the content on a single line
+    margin: 0 auto; Gives that scrolling effect as the typing happens
     animation: typing 2.8s steps(45, end), blink-caret 0.75s step-end infinite;
-  }
+  } */
 
   /* The typing effect */
-  @keyframes typing {
+  /* @keyframes typing {
     from {
       width: 0;
     }
@@ -361,10 +375,10 @@
       width: 100%;
       max-width: 630px;
     }
-  }
+  } */
 
   /* The typeWriter cursor effect */
-  @keyframes blink-caret {
+  /* @keyframes blink-caret {
     from,
     to {
       border-color: transparent;
@@ -372,10 +386,10 @@
     50% {
       border-color: var(--accentColor);
     }
-  }
+  } */
 
   .heroImage_text h3 {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .heroImage_text p {
