@@ -1,10 +1,47 @@
+.sky_color {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(#072142),
+    color-stop(#061c37),
+    color-stop(#07182b),
+    color-stop(#061220),
+    to(#020b16)
+  );
+  background-image: -webkit-linear-gradient(
+    top,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+  background-image: -o-linear-gradient(
+    top,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+  background-image: linear-gradient(
+    to bottom,
+    #072142,
+    #061c37,
+    #07182b,
+    #061220,
+    #020b16
+  );
+  z-index: -200;
+}
+
 .heroImage {
-  background-image: url("../../assets/optimized-images/hero-image-optimized.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: right;
-  background-attachment: fixed;
-  background-color: var(--backgroundColor);
   width: 100vw;
   height: 100vh;
 }
@@ -27,9 +64,9 @@
   width: 100%;
   height: 100%;
   -webkit-animation-name: vanishIn;
-  -webkit-animation-duration: 0.8s;
+  -webkit-animation-duration: 1s;
   animation-name: vanishIn;
-  animation-duration: 0.8s;
+  animation-duration: 1s;
 }
 
 @-webkit-keyframes vanishIn {
@@ -75,23 +112,22 @@
 }
 
 .gradientMove {
-  background-color: transparent;
   background-color: rgba(150, 150, 150, 0.05);
   box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 1),
     10px 10px 10px -10px rgba(0, 0, 0, 1);
   --gradient: linear-gradient(
     to right,
-    rgba(33, 37, 41, 0.08),
-    rgba(33, 37, 41, 0.06),
-    rgba(240, 240, 240, 0.1),
-    rgba(33, 37, 41, 0.06),
-    rgba(33, 37, 41, 0.08)
+    rgba(33, 37, 41, 0.07),
+    rgba(33, 37, 41, 0.05),
+    rgba(240, 240, 240, 0.06),
+    rgba(33, 37, 41, 0.05),
+    rgba(33, 37, 41, 0.07)
   );
   position: relative;
   background-image: var(--gradient);
   background-size: 400%;
   backdrop-filter: blur(2px);
-  animation: gradientMove 5.5s infinite alternate;
+  animation: gradientMove 4s 2.45s infinite alternate;
 }
 
 @keyframes gradientMove {
@@ -124,32 +160,32 @@
 }
 
 .heroImage_text h1 {
-  color: var(--primaryColor);
-  letter-spacing: 0.5px;
-  font-size: 1.75rem;
+  color: var(--accentColor);
+  letter-spacing: 1px;
+  /* font-size: 1.75rem; */
   margin-bottom: 0.1rem;
 }
 
-/* .typeWriter {
-  width: 103.5%;
-  color: var(--primaryColor);
-  font-size: 9.35vw;
-  overflow: hidden; Ensures the content is not revealed until the animation
-  border-right: 0.15rem solid var(--accentColor); The typwriter cursor
-  white-space: nowrap; Keeps the content on a single line
-  margin: 0 auto; Gives that scrolling effect as the typing happens
-  animation: typing 2.5s steps(35, end), blink-caret 0.75s step-end infinite;
-} */
+.typeWriter {
+  width: 100%;
+  color: var(--accentColor);
+  font-size: 8.8vw;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  /* border-right: 0.15rem solid var(--accentColor); The typwriter cursor */
+  white-space: nowrap; /* Keeps the content on a single line */
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  animation: typing 2.5s steps(40, end); /* blink-caret 0.75s step-end infinite; */
+}
 
 /* The typing effect */
-/* @keyframes typing {
+@keyframes typing {
   from {
     width: 0;
   }
   to {
     width: 100%;
   }
-} */
+}
 
 /* The typeWriter cursor effect */
 /* @keyframes blink-caret {
@@ -164,8 +200,9 @@
 
 .heroImage_text h3 {
   font-style: italic;
-  color: var(--accentColor);
-  letter-spacing: 0.5px;
+  color: var(--accentColorHover);
+  color: var(--textColorWhiteHover);
+  letter-spacing: 1px;
   font-size: 0.75rem;
   margin-bottom: 1.5rem;
 }
@@ -185,7 +222,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  margin: 2.2rem 0;
+  margin: 2.2rem auto;
 }
 
 .btn_effect {
@@ -194,14 +231,14 @@
   z-index: 1;
   width: 120px;
   text-align: center;
-  background-color: var(--primaryColor);
+  background-color: var(--secondaryColor);
   box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
   font-size: 1rem;
   font-weight: bold;
-  color: var(--backgroundColor);
+  color: var(--textColorWhite);
   padding: 0.6rem;
   border: none;
-  border-radius: 10px;
+  border-radius: 50px;
   transition: all 0.3s linear;
 }
 
@@ -213,7 +250,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) rotate(45deg);
-  background: var(--backgroundColor);
+  background: var(--primaryColor);
   transition: 0.4s linear;
   display: block;
   z-index: -1;
@@ -224,8 +261,8 @@
 }
 
 .btn_effect:hover {
-  color: var(--primaryColor);
-  border: 1px solid var(--primaryColor);
+  color: var(--secondaryColor);
+  outline: 1px solid var(--secondaryColor);
   -webkit-animation: scaleBtn 0.4s infinite alternate;
   animation: scaleBtn 0.4s infinite alternate;
 }
@@ -259,7 +296,7 @@
 }
 
 .heroImage_media a {
-  color: var(--accentColor);
+  color: var(--textColorWhiteHover);
   width: auto;
   height: auto;
 }
@@ -267,7 +304,7 @@
 .heroImage_media svg {
   width: 28px;
   height: 28px;
-  fill: var(--accentColor);
+  fill: var(--textColorWhiteHover);
   transition: all 0.2s linear;
 }
 
@@ -287,43 +324,13 @@
   }
 
   .heroImage_text h1 {
-    font-size: 3.8rem;
+    letter-spacing: 2px;
+    font-size: 4rem;
     margin-bottom: 0.2rem;
   }
 
-  /* .typeWriter {
-    width: 100%;
-    color: var(--primaryColor);
-    font-size: 8.6vw;
-    overflow: hidden; Ensures the content is not revealed until the animation
-    border-right: 0.15rem solid var(--accentColor); The typwriter cursor
-    white-space: nowrap; Keeps the content on a single line
-    margin: 0 auto; Gives that scrolling effect as the typing happens
-    animation: typing 2.5s steps(40, end), blink-caret 0.75s step-end infinite;
-  } */
-
-  /* The typing effect */
-  /* @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-    }
-  } */
-
-  /* The typeWriter cursor effect */
-  /* @keyframes blink-caret {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: var(--accentColor);
-    }
-  } */
-
   .heroImage_text h3 {
+    letter-spacing: 1.2px;
     font-size: 0.95rem;
     margin-bottom: 1.8rem;
   }
@@ -351,45 +358,11 @@
   }
 
   .heroImage_text h1 {
-    font-size: 4.5rem;
+    font-size: 5rem;
   }
 
-  /*   .typeWriter {
-    width: 100%;
-    max-width: 630px;
-    color: var(--primaryColor);
-    font-size: 4.5rem;
-    overflow: hidden; Ensures the content is not revealed until the animation
-    border-right: 0.15rem solid var(--accentColor); The typwriter cursor
-    white-space: nowrap; Keeps the content on a single line
-    margin: 0 auto; Gives that scrolling effect as the typing happens
-    animation: typing 2.8s steps(45, end), blink-caret 0.75s step-end infinite;
-  } */
-
-  /* The typing effect */
-  /* @keyframes typing {
-    from {
-      width: 0;
-    }
-    to {
-      width: 100%;
-      max-width: 630px;
-    }
-  } */
-
-  /* The typeWriter cursor effect */
-  /* @keyframes blink-caret {
-    from,
-    to {
-      border-color: transparent;
-    }
-    50% {
-      border-color: var(--accentColor);
-    }
-  } */
-
   .heroImage_text h3 {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 
   .heroImage_text p {
@@ -399,6 +372,10 @@
 
   .heroImage_media {
     width: 25%;
+  }
+
+  .gradientMove {
+    animation: gradientMove 4s 2s infinite alternate;
   }
 }
 /* *************************************************************************************************** */

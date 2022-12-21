@@ -3,25 +3,18 @@ import styles from "../../pages/ResumenPage/ResumenPage.module.css";
 
 const EXPERIENCE = [
   {
-    title: "Proyectos Personales",
+    title: "Front-End Developer - Xenial Group, Perú",
     description:
-      "Actualmente me encuentro en la realización de proyectos personales para mejorar mis habilidades como Front-End Developer.",
-    since: "2022",
-    to: "Ahora",
+      "Maquetación, desarrollo y diseño responsive de páginas web con React, diseño UI, uso de metodologías de UX y SCRUM.",
+    to: "Actualidad",
+    since: "Nov 2021",
   },
   {
-    title: "Practicante del Área de Mantenimiento",
+    title: "Front-End Developer - Axcel Web, Perú",
     description:
-      "Realicé prácticas de ingeniería mecánica eléctrica en el área de mantenimiento donde fortalecí y aprendí nuevos conocimientos y al estar trabajando a la par de un gran número de personal pude mejorar habilidades interpersonales y de liderazgo.",
-    since: "2021",
-    to: "2022",
-  },
-  {
-    title: "Desarrollo de páginas web",
-    description:
-      "Maquetación y desarrollo de páginas web, creación de UI, uso de metodologías de UX.",
-    since: "2021",
-    to: "2022",
+      "Maquetación, desarrollo y diseño responsive de páginas web con React, diseño UI.",
+    to: "Nov 2021",
+    since: "Nov 2020",
   },
 ];
 
@@ -36,7 +29,6 @@ export const ExperienceData = () => {
         <div className={styles.card_date_line}></div>
       </div>
 
-      {/* <div className={`${styles.card_info} ${styles.gradientMove}`}> */}
       <div className={styles.card_info}>
         <h4>{elemento.title}</h4>
         <p>{elemento.description}</p>
@@ -44,13 +36,5 @@ export const ExperienceData = () => {
     </div>
   ));
 
-  return (
-    <div className={styles.resume_content_info}>
-      <h3>Mis Experiencias</h3>
-
-      <div className={styles.resume_content_description}>
-        {listaExperiencia}
-      </div>
-    </div>
-  );
+  return <>{listaExperiencia}</>;
 };

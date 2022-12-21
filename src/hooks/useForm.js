@@ -9,10 +9,11 @@ const initialForm = {
 };
 
 const initialValidation = {
-  name: "",
-  email: "",
-  subject: "",
-  comments: "",
+  /* se coloca "inputEstiloBase" ya que se está trabajando con los condicionales y con el CSS en ContactForm.js, ya que si en las validaciones de React Developer Tools dice "inputEstiloBase" entonce se mostrará el valor del input por defecto como lo colocamos, pero cuando se escriba bien o mal entonces mostrará los estilos correctos o estilos incorrectos */
+  name: "inputEstiloBase",
+  email: "inputEstiloBase",
+  subject: "inputEstiloBase",
+  comments: "inputEstiloBase",
 };
 
 /* objeto que hace referencia a los mensajes de error por input */
@@ -205,7 +206,7 @@ export const useForm = () => {
           setTimeout(() => {
             setFormState(initialForm);
             setResponse(false);
-            // window.location.reload();
+            window.location.reload();
           }, 3000);
         });
     }

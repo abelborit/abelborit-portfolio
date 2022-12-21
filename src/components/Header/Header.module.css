@@ -2,8 +2,18 @@
   z-index: 999;
   position: sticky;
   top: 0;
-  background-color: var(--backgroundColor);
-  box-shadow: 10px 10px 10px -10px rgba(0, 0, 0, 0.5);
+  left: 0;
+  background-color: transparent;
+  background-color: rgba(7, 33, 66, 0.3);
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 33, 66, 0.3),
+    rgba(7, 33, 66, 0.3),
+    transparent
+  );
+  backdrop-filter: blur(2.5px);
+  /* box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.5),
+    0px 10px 10px -10px rgba(0, 0, 0, 0.5); */
   width: 100%;
   height: 3.5rem;
   display: flex;
@@ -83,18 +93,17 @@
   outline: none;
   cursor: pointer;
   font-size: 1.4rem;
-  color: var(--primaryColor);
+  color: var(--textColorWhite);
   /* color: #42caff; */
   font-weight: bold;
   transition: all 0.3s ease;
 }
 
 .link_name .link_name_btn:hover {
-  transform: scale(1.12);
-  color: var(--primaryColorHover);
+  transform: scale(1.1);
+  color: var(--secondaryColor);
 }
 
-/* **************************************** RESPONSIVE DESIGN **************************************** */
 @media screen and (min-width: 768px) {
   .header .link_name {
     width: 40%;
@@ -102,16 +111,9 @@
 
   .link_name .link_name_btn {
     font-size: 1.6rem;
-    transition: all 0.3s ease;
-  }
-
-  .link_name .link_name_btn:hover {
-    transform: scale(1.12);
   }
 }
-/* *************************************************************************************************** */
 
-/* **************************************** RESPONSIVE DESIGN **************************************** */
 @media screen and (min-width: 1024px) {
   .header .link_name {
     width: 40%;
@@ -119,11 +121,5 @@
 
   .link_name .link_name_btn {
     font-size: 1.8rem;
-    transition: all 0.3s ease;
-  }
-
-  .link_name .link_name_btn:hover {
-    transform: scale(1.12);
   }
 }
-/* *************************************************************************************************** */

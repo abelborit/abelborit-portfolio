@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { HeaderSection } from "../../components/HeaderSection/HeaderSection";
 import profileOptimized from "../../assets/optimized-images/profile-optimized.jpg";
 import curriculumPDF from "../../assets/AbelBoritCurriculumVitae.pdf";
+import { Link } from "react-router-dom";
+
 import styles from "./AboutPage.module.css";
 
 const HABILIDADES = [
@@ -8,6 +11,8 @@ const HABILIDADES = [
   "JavaScript",
   "HTML",
   "CSS",
+  "CSS Flex",
+  "CSS Grid",
   "SASS",
   "UI/UX",
   "Figma",
@@ -15,7 +20,14 @@ const HABILIDADES = [
   "Metodología SCRUM",
 ];
 
-export const AboutPage = (props) => {
+export const AboutPage = () => {
+  /* se coloca este estado ya que cuando se cambia de ruta hay un desplazamiento hacia arriba, entonces con este setTimeout() hace que se espere lo mínimo para que la página ya se encuentre en la parte de arriba y se muestre con normalidad la página */
+  const [loaderInitial, setLoaderInitial] = useState(true);
+
+  setTimeout(() => {
+    setLoaderInitial(false);
+  }, 1);
+
   const listaHabilidades = HABILIDADES.map((elemento) => (
     <p key={elemento}>
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
@@ -27,90 +39,122 @@ export const AboutPage = (props) => {
   ));
 
   return (
-    <section ref={props.aboutREF} className="section">
-      <div className="section-title">
-        <h3>ACERCA</h3>
-        <h4>Sobre Mi</h4>
-      </div>
+    <>
+      {loaderInitial ? null : (
+        <>
+          <HeaderSection></HeaderSection>
 
-      <div className={styles.about_content}>
-        <div className={styles.about_bio}>
-          <div className={styles.about_bio_title}>
-            <h3>Abel Borit Guitton</h3>
-            <h4>Front-End Developer con Grado en Ingeniería</h4>
+          <div className={`${styles.section} ${styles.slideLeftReturn}`}>
+            <div
+              className={`${styles.image_container} ${styles.slideRightReturn}`}
+            ></div>
+
+            <div className={styles.title_container}>
+              <h1 className={styles.title_text}>Abel Borit Guitton</h1>
+
+              <div className={styles.border_container}>
+                <span className={styles.border_first}></span>
+                <span className={styles.border_second}></span>
+              </div>
+
+              <p className={styles.description}>
+                Front-End Developer con Grado en Ingeniería
+              </p>
+
+              <div className={styles.btnBack_effect_container}>
+                <Link className={styles.btnBack_effect} to="/home">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
+                  </svg>
+
+                  <span>Regresar</span>
+                </Link>
+              </div>
+            </div>
           </div>
 
-          <div className={styles.about_bio_info}>
-            <p>
-              Soy Front-End Developer con grado en ingeniería. Me considero una
-              persona responsable y proactiva, con capacidad de liderazgo, con
-              buen manejo en las redes interpersonales y con la aptitud de
-              trabajar en equipo.
-            </p>
-            <br />
-            <p>
-              Inicié en el mundo del desarrollo digital porque me es interesante
-              la cantidad de herramientas existentes y proyectos que se pueden
-              realizar y creo que la transformación digital será la llave para
-              resolver retos en el futuro. Quiero seguir mejorando y aprendiendo
-              nuevas cosas de este gran mundo del desarrollo digital.
-            </p>
-          </div>
+          <section className={styles.section_container}>
+            <div className={styles.section_content}>
+              <div className={styles.section_title}>
+                <div className={styles.section_title_number}>
+                  <div></div>
+                  <span>01</span>
+                </div>
 
-          <div className={styles.about_bio_date}>
-            <span>
-              <b>Edad:</b> 24 años
-            </span>
-            <span>
-              <b>Ubicación:</b> Arequipa, Perú
-            </span>
-          </div>
-        </div>
+                <span className={styles.section_title_text}>¿Quién Soy?</span>
+              </div>
 
-        <div className={styles.about_profile}>
-          <div className={styles.profile_img}>
-            <img src={profileOptimized} alt="Abel Borit Guitton" />
-          </div>
+              <div className={styles.about_bio}>
+                <div className={styles.about_bio_title}>
+                  <span>Abel Borit Guitton</span>
+                </div>
 
-          <div className={styles.profile_media}>
-            <a
-              href="https://github.com/abelborit"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512">
-                <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z" />
-              </svg>
-            </a>
+                <div className={styles.about_bio_info}>
+                  <p>
+                    Soy Front-End Developer con grado en ingeniería. Me
+                    considero una persona responsable y proactiva, con capacidad
+                    de liderazgo, con buen manejo en las redes interpersonales y
+                    con la aptitud de trabajar en equipo.
+                  </p>
+                  <br />
+                  <p>
+                    Inicié en el mundo del desarrollo digital porque me es
+                    interesante la cantidad de herramientas existentes y
+                    proyectos que se pueden realizar y creo que la
+                    transformación digital será la llave para resolver retos en
+                    el futuro. Quiero seguir mejorando y aprendiendo nuevas
+                    cosas de este gran mundo del desarrollo digital.
+                  </p>
+                </div>
 
-            <a
-              href="https://www.linkedin.com/in/abelborit/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z" />
-              </svg>
-            </a>
-          </div>
-        </div>
+                <div className={styles.about_bio_date}>
+                  <span>
+                    <b>Edad:</b> 24 años
+                  </span>
+                  <span>
+                    <b>Ubicación:</b> Arequipa, Perú
+                  </span>
+                </div>
 
-        <div className={styles.about_skills}>
-          <h3>Mis Habilidades</h3>
+                <div className={styles.about_bio_profile}>
+                  <img src={profileOptimized} alt="Abel Borit Guitton" />
+                </div>
+              </div>
+            </div>
+          </section>
 
-          <div className={styles.list_habilities}>{listaHabilidades}</div>
-        </div>
+          <section className={styles.section_container}>
+            <div className={styles.section_content}>
+              <div className={styles.section_title}>
+                <div className={styles.section_title_number}>
+                  <div></div>
+                  <span>02</span>
+                </div>
 
-        <div className={styles.curriculum_btn}>
-          <a
-            href={curriculumPDF}
-            download="AbelBorit-CurriculumVitae"
-            className={styles.btn_effect}
-          >
-            Descargar CV
-          </a>
-        </div>
-      </div>
-    </section>
+                <span className={styles.section_title_text}>Mis Skills</span>
+              </div>
+
+              <div className={styles.about_skills}>{listaHabilidades}</div>
+
+              <div className={styles.btn_effect_container}>
+                <a
+                  href={curriculumPDF}
+                  download="AbelBorit-CurriculumVitae"
+                  className={styles.btn_effect}
+                >
+                  Descargar CV
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <footer className={styles.footer_section}>
+            <Link className={styles.footer} to="/home">
+              Empecemos a trabajar juntos
+            </Link>
+          </footer>
+        </>
+      )}
+    </>
   );
 };
