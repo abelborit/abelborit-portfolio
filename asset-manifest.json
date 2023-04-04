@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/abelborit-portfolio/static/css/main.29e409b3.css",
-    "main.js": "/abelborit-portfolio/static/js/main.8e0e8989.js",
+    "main.css": "/abelborit-portfolio/static/css/main.be966ea2.css",
+    "main.js": "/abelborit-portfolio/static/js/main.c6cf2d2e.js",
     "static/js/787.2eed6f62.chunk.js": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js",
     "static/media/profile-optimized.jpg": "/abelborit-portfolio/static/media/profile-optimized.2a4be534e5268e21a82c.jpg",
     "static/media/resumen-image.jpg": "/abelborit-portfolio/static/media/resumen-image.bd50f7894e8cf750c325.jpg",
+    "static/media/AbelBoritCurriculumVitae.pdf": "/abelborit-portfolio/static/media/AbelBoritCurriculumVitae.66bf68d8daccea1372fe.pdf",
     "static/media/about-image.jpg": "/abelborit-portfolio/static/media/about-image.2e61d4c60f31b08a763b.jpg",
     "static/media/projects-image.jpg": "/abelborit-portfolio/static/media/projects-image.0d883ac139902de0bb45.jpg",
-    "static/media/AbelBoritCurriculumVitae.pdf": "/abelborit-portfolio/static/media/AbelBoritCurriculumVitae.d288e712d10112763848.pdf",
     "static/media/resumen-image-optimized.jpg": "/abelborit-portfolio/static/media/resumen-image-optimized.f1a3aa598978466038ea.jpg",
     "static/media/about-image-optimized.jpg": "/abelborit-portfolio/static/media/about-image-optimized.1bdcce28d6131ed151b9.jpg",
     "static/media/projects-image-optimized.jpg": "/abelborit-portfolio/static/media/projects-image-optimized.b6105390f2e0a678ed05.jpg",
     "static/media/404_Page_Not_Found _Monochromatic.svg": "/abelborit-portfolio/static/media/404_Page_Not_Found _Monochromatic.7f0d49c21ed2b0694c63abe9239042c7.svg",
     "index.html": "/abelborit-portfolio/index.html",
-    "main.29e409b3.css.map": "/abelborit-portfolio/static/css/main.29e409b3.css.map",
-    "main.8e0e8989.js.map": "/abelborit-portfolio/static/js/main.8e0e8989.js.map",
+    "main.be966ea2.css.map": "/abelborit-portfolio/static/css/main.be966ea2.css.map",
+    "main.c6cf2d2e.js.map": "/abelborit-portfolio/static/js/main.c6cf2d2e.js.map",
     "787.2eed6f62.chunk.js.map": "/abelborit-portfolio/static/js/787.2eed6f62.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.29e409b3.css",
-    "static/js/main.8e0e8989.js"
+    "static/css/main.be966ea2.css",
+    "static/js/main.c6cf2d2e.js"
   ]
 }
