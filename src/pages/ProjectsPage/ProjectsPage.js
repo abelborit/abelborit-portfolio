@@ -5,21 +5,23 @@ import styles from "./ProjectsPage.module.css";
 
 const PROYECTOS = [
   {
-    title: "Frontend Developer - Xenial Group",
-    description:
-      "Fui parte del equipo de frontend para poder maquetar sitios web. También participé en el equipo de UI para la creación de la interfaz visual por el lado del cliente. Creación de componentes para reutilizarlos en diferentes partes del proyecto evitando ser redundante para optimizar el código.",
+    title: "Leader Frontend Developer – Consigue Ventas Online, Perú",
+    description: `Realizo funciones de maquetación, desarrollo y diseño responsive de un proyecto de Marketplace con React, integración con diferentes API y estilos usando Styled Components. Realicé refactorización de código para solucionar el diseño responsive aplicando mobile first. Realicé refactorización de código para solucionar problemas en la funcionalidad de la aplicación. Propuse aplicar la metodología SCRUM con reuniones diarias al inicio y fin de la jornada para evitar demoras innecesarias en el proyecto de Marketplace. Propuse el diseño y estilo que tendrá la plataforma de Marketplace.`,
   },
   /* **************************************************************************************************** */
   {
-    title: "NutriBlog - Freelancer",
-    description:
-      "Desarrollo de una Single Page Application con responsive design, creación de la UI para mostrar información de un emprendimiento del sector nutricional a través los posts de reseñas.",
+    title: "Frontend Developer - Xenial Group, Perú",
+    description: `Maquetación, desarrollo y diseño responsive de páginas web con React (usando mobile first), integración con diferentes API, diseño UI, uso de metodologías de UX y SCRUM. Creación de componentes para reutilizarlos en diferentes partes del proyecto evitando ser redundante para optimizar el código.`,
   },
   /* **************************************************************************************************** */
   {
-    title: "Frontend Developer - Axcel Web",
-    description:
-      "Fui parte del equipo de UI para actualizar el diseño visual y la funcionalidad de la interfaz de una página web del sector automovilístico. Participé en la maquetación de sitios web y del responsive design de los mismos. Creación de componentes para reutilizarlos en diferentes partes de los proyectos evitando ser redundante para optimizar el código.",
+    title: "Freelancer Frontend Developer - NutriBlog",
+    description: `Desarrollo de una Single Page Application con responsive design. Creación de la UI para mostrar información de un emprendimiento del sector nutricional a través de posts de reseñas.`,
+  },
+  /* **************************************************************************************************** */
+  {
+    title: "Frontend Developer - Axcel Web, Perú",
+    description: `Maquetación, desarrollo y diseño responsive de páginas web con React, integración con diferentes API y diseño UI. Fui parte del equipo de UI para actualizar el diseño visual y la funcionalidad de la interfaz de una página web del sector automovilístico. Participé en la maquetación de sitios web y del responsive design de los mismos. Creación de componentes para reutilizarlos en diferentes partes de los proyectos evitando ser redundante para optimizar el código.`,
   },
 ];
 

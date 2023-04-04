@@ -3,21 +3,21 @@ import styles from "../../pages/ResumenPage/ResumenPage.module.css";
 
 const EDUCATION = [
   {
-    title: "Front-End Developer",
+    title: "Frontend Developer (autodidacta)",
     description:
-      "Conocimientos de desarrollor Front-End usando diversas herramientas como React, JavaScript, HTML & CSS, entre otras.",
+      "Desarrollador Frontend desde el 2020 usando diversas herramientas como React, JavaScript, HTML & CSS, entre otras.",
     to: "Actualidad",
     since: "Nov 2020",
   },
   {
-    title: "Investigación en Ingeniería",
+    title: "Investigación en Ingeniería en la UCV",
     description:
       "Logro obtenido tras culminar curso de investigación en Ingeniería.",
     to: "Jun 2022",
     since: "Ene 2022",
   },
   {
-    title: "Grado en Ingeniería",
+    title: "Grado en Ingeniería en la UJCM",
     description:
       "Logro obtenido del Grado en Ingeniería (Perteneciente al Top 10)",
     to: "Dic 2019",

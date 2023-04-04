@@ -604,14 +604,14 @@
 
   .project_card {
     width: 100%;
-    height: 240px;
+    height: 100%;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .project_card {
     width: 100%;
-    height: 200px;
+    height: 100%;
   }
 }
 

@@ -8,15 +8,18 @@ import styles from "./AboutPage.module.css";
 
 const HABILIDADES = [
   "React",
+  "Redux Toolkit",
   "JavaScript",
   "HTML",
   "CSS",
   "CSS Flex",
   "CSS Grid",
+  "Styled Components",
   "SASS",
   "UI/UX",
   "Figma",
-  "Balsamiq",
+  "Git & GitHub",
+  "Postman",
   "Metodología SCRUM",
 ];
 
