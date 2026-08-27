@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import projectsImage from "../../assets/original-images/projects-image.jpg";
 import styles from "./LandingPage.module.css";
+import { GTM_EVENTS } from "../../utils/gtm";
 
 export const ProjectsSection = (props) => {
   return (
@@ -41,7 +42,11 @@ export const ProjectsSection = (props) => {
         <p className={styles.description}>Mis proyectos</p>
 
         <div className={styles.btn_effect_container}>
-          <Link className={styles.btn_effect} to="/proyectos">
+          <Link
+            className={styles.btn_effect}
+            to="/proyectos"
+            onClick={() => GTM_EVENTS.GenericRedirect("/proyectos")}
+          >
             Mostrar más
           </Link>
         </div>

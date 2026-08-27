@@ -1,12 +1,17 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeaderSection.module.css";
+import { GTM_EVENTS } from "../../utils/gtm";
 
 export const HeaderSection = () => {
   return (
     <header className={`${styles.header} ${styles.boingInUp}`}>
       <div className={styles.link_name}>
-        <Link to="/" className={styles.link_name_btn}>
+        <Link
+          to="/"
+          className={styles.link_name_btn}
+          onClick={() => GTM_EVENTS.GenericRedirect("/")}
+        >
           AbelBorit
         </Link>
       </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styles from "./HeroImage.module.css";
+import { GTM_EVENTS } from "../../utils/gtm";
 
 export const HeroImage = () => {
   return (
@@ -27,7 +28,11 @@ export const HeroImage = () => {
               </div>
 
               <div className={styles.heroImage_pages}>
-                <Link className={styles.btn_effect} to="home">
+                <Link
+                  className={styles.btn_effect}
+                  to="home"
+                  onClick={() => GTM_EVENTS.GenericRedirect("/home")}
+                >
                   Explorar
                 </Link>
               </div>

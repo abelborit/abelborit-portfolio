@@ -5,6 +5,7 @@ import { ExperienceData } from "../../components/ExperienceData/ExperienceData";
 import { Link } from "react-router-dom";
 
 import styles from "./ResumenPage.module.css";
+import { GTM_EVENTS } from "../../utils/gtm";
 
 export const ResumenPage = () => {
   /* se coloca este estado ya que cuando se cambia de ruta hay un desplazamiento hacia arriba, entonces con este setTimeout() hace que se espere lo mínimo para que la página ya se encuentre en la parte de arriba y se muestre con normalidad la página */
@@ -38,7 +39,11 @@ export const ResumenPage = () => {
               </p>
 
               <div className={styles.btnBack_effect_container}>
-                <Link className={styles.btnBack_effect} to="/home">
+                <Link
+                  className={styles.btnBack_effect}
+                  to="/home"
+                  onClick={() => GTM_EVENTS.GenericRedirect("/home")}
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
                   </svg>
@@ -86,7 +91,11 @@ export const ResumenPage = () => {
           </section>
 
           <footer className={styles.footer_section}>
-            <Link className={styles.footer} to="/home">
+            <Link
+              className={styles.footer}
+              to="/home"
+              onClick={() => GTM_EVENTS.GenericRedirect("/home")}
+            >
               Empecemos a trabajar juntos
             </Link>
           </footer>
