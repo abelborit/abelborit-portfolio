@@ -47,7 +47,12 @@ export const AboutSection = (props) => {
           <Link
             className={styles.btn_effect}
             to="/acerca"
-            onClick={() => GTM_EVENTS.GenericRedirect("/acerca")}
+            onClick={() =>
+              GTM_EVENTS.GenericRedirect({
+                new_location: "/acerca",
+                section: "about section",
+              })
+            }
           >
             Mostrar más
           </Link>

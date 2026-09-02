@@ -6,12 +6,13 @@ const current_path = () => {
 };
 
 export const GTM_EVENTS = {
-  GenericRedirect: (new_location) => {
+  GenericRedirect: ({ new_location, section }) => {
     sendToDataLayerGTM({
-      eventName: "redirect_hash",
+      eventName: "redirect_page",
       eventParams: {
         new_location,
         current_location: current_path(),
+        section,
       },
     });
   },

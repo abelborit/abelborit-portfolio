@@ -10,7 +10,12 @@ export const HeaderSection = () => {
         <Link
           to="/"
           className={styles.link_name_btn}
-          onClick={() => GTM_EVENTS.GenericRedirect("/")}
+          onClick={() =>
+            GTM_EVENTS.GenericRedirect({
+              new_location: "/",
+              section: "header section",
+            })
+          }
         >
           AbelBorit
         </Link>

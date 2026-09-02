@@ -105,15 +105,15 @@ export const sendToDataLayerGTM = (objectDataLayer) => {
 
   sendToDataLayer(eventName, newEventParams);
 };
-export const sendToDataLayerATM = (eventName, eventParams) => {
-  if (window?.dataLayer) {
-    const sanitizedEventParams = sanitizeEventParams(eventParams);
+// export const sendToDataLayerATM = (eventName, eventParams) => {
+//   if (window?.dataLayer) {
+//     const sanitizedEventParams = sanitizeEventParams(eventParams);
 
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({
-      event: "atm.event",
-      event_name: eventName,
-      ...sanitizedEventParams,
-    });
-  }
-};
+//     window.dataLayer = window.dataLayer || [];
+//     window.dataLayer.push({
+//       event: "atm.event",
+//       event_name: eventName,
+//       ...sanitizedEventParams,
+//     });
+//   }
+// };

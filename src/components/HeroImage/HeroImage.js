@@ -31,7 +31,12 @@ export const HeroImage = () => {
                 <Link
                   className={styles.btn_effect}
                   to="home"
-                  onClick={() => GTM_EVENTS.GenericRedirect("/home")}
+                  onClick={() =>
+                    GTM_EVENTS.GenericRedirect({
+                      new_location: "/home",
+                      section: "hero image",
+                    })
+                  }
                 >
                   Explorar
                 </Link>
