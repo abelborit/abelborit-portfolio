@@ -122,7 +122,7 @@ export const AboutPage = () => {
 
                 <div className={styles.about_bio_date}>
                   <span>
-                    <b>Edad:</b> 24 años
+                    <b>Edad:</b> 27 años
                   </span>
                   <span>
                     <b>Ubicación:</b> Arequipa, Perú
@@ -130,7 +130,7 @@ export const AboutPage = () => {
                 </div>
 
                 <div className={styles.about_bio_profile}>
-                  <img src={profileOptimized} alt="Abel Borit Guitton" />
+                  <img src={profileOptimized} alt="profile" />
                 </div>
               </div>
             </div>
