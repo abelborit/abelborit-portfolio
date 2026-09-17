@@ -6,22 +6,32 @@ import { Link } from "react-router-dom";
 
 import styles from "./AboutPage.module.css";
 import { GTM_EVENTS } from "../../utils/gtm";
+import { getAge } from "../../helpers/getAge";
 
 const HABILIDADES = [
-  "React",
-  "Redux Toolkit",
-  "JavaScript",
-  "HTML",
-  "CSS",
-  "CSS Flex",
-  "CSS Grid",
+  "React JS",
+  "Microfrontends",
+  "JavaScript & TypeScript",
+  "Zustand",
+  "TanStack Query",
+  "Tailwind CSS",
+  "Git & GitHub",
+  "Uso y creación de paquetes",
+  "Angular",
+  "Gatsby",
+  "React Native",
+  "SEO (Search Engine Optimization)",
+  "HTML & CSS (Flex & Grid)",
   "Styled Components",
+  "Conocimientos en Azure",
   "SASS",
   "UI/UX",
   "Figma",
-  "Git & GitHub",
   "Postman",
   "Metodología SCRUM",
+  "GitHub Copilot",
+  "Prompt engineering",
+  "Best practices for the use of AI",
 ];
 
 export const AboutPage = () => {
@@ -62,7 +72,7 @@ export const AboutPage = () => {
               </div>
 
               <p className={styles.description}>
-                Front-End Developer con Grado en Ingeniería
+                Frontend Developer con grado profesional en ingeniería
               </p>
 
               <div className={styles.btnBack_effect_container}>
@@ -104,10 +114,10 @@ export const AboutPage = () => {
 
                 <div className={styles.about_bio_info}>
                   <p>
-                    Soy Front-End Developer con grado en ingeniería. Me
-                    considero una persona responsable y proactiva, con capacidad
-                    de liderazgo, con buen manejo en las redes interpersonales y
-                    con la aptitud de trabajar en equipo.
+                    Soy Frontend Developer con grado profesional en ingeniería.
+                    Me considero una persona responsable y proactiva, con
+                    capacidad de liderazgo, con buen manejo en las redes
+                    interpersonales y con la aptitud de trabajar en equipo.
                   </p>
                   <br />
                   <p>
@@ -115,14 +125,13 @@ export const AboutPage = () => {
                     interesante la cantidad de herramientas existentes y
                     proyectos que se pueden realizar y creo que la
                     transformación digital será la llave para resolver retos en
-                    el futuro. Quiero seguir mejorando y aprendiendo nuevas
-                    cosas de este gran mundo del desarrollo digital.
+                    el futuro.
                   </p>
                 </div>
 
                 <div className={styles.about_bio_date}>
                   <span>
-                    <b>Edad:</b> 27 años
+                    <b>Edad:</b> {getAge()} años
                   </span>
                   <span>
                     <b>Ubicación:</b> Arequipa, Perú

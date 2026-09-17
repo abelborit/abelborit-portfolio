@@ -16,7 +16,7 @@ export const HeroImage = () => {
                 <h1 className={styles.typeWriter}>Abel Borit Guitton</h1>
                 {/* <h1>Abel Borit Guitton</h1> */}
 
-                <h3>Front-End Developer con Grado en Ingeniería</h3>
+                <h3>Frontend Developer con grado profesional en ingeniería</h3>
                 <p>
                   Siento curiosidad por la tecnología y creo que la
                   transformación digital será la llave para resolver retos en el

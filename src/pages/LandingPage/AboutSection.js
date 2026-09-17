@@ -40,7 +40,7 @@ export const AboutSection = (props) => {
         </div>
 
         <p className={styles.description}>
-          Front-End Developer con Grado en Ingeniería
+          Frontend Developer con grado profesional en ingeniería
         </p>
 
         <div className={styles.btn_effect_container}>
