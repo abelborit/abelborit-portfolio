@@ -1,19 +1,25 @@
 import {
+  useEffect,
+  useRef,
   useState,
   type ChangeEvent,
+  type FocusEvent,
   type FormEvent,
-  type KeyboardEvent,
 } from "react";
 import { helpHttp } from "../helpers/helpHttp";
 
-interface FormState {
+export interface FormState {
   name: string;
   email: string;
   subject: string;
   comments: string;
 }
 
-type FormField = keyof FormState;
+export type FormField = keyof FormState;
+
+/* null = el campo aún no se ha tocado (se muestra con el estilo base), "" = válido, texto = mensaje de error */
+export type FieldValidation = string | null;
+export type FormValidation = Record<FormField, FieldValidation>;
 
 /* estado de la respuesta del envío: null = sin enviar */
 export type FormResponseStatus = "success" | "error" | null;
@@ -23,7 +29,23 @@ interface FormSubmitResponse {
   success: "true" | "false" | boolean;
   message?: string;
 }
+
 type FormElement = HTMLInputElement | HTMLTextAreaElement;
+
+/* TODO: reemplazar el correo por el alias aleatorio que entrega formsubmit para no exponer la dirección en el código público */
+const FORMSUBMIT_ENDPOINT =
+  "https://formsubmit.co/ajax/abelboritguitton@gmail.com";
+
+/* nombre del campo trampa (honeypot). Formsubmit descarta los envíos que lo traen con contenido */
+export const HONEYPOT_FIELD = "_honey";
+
+/* longitudes máximas. También se usan como maxLength en los inputs */
+export const MAX_LENGTH: Record<FormField, number> = {
+  name: 50,
+  email: 254,
+  subject: 100,
+  comments: 2000,
+};
 
 const initialForm: FormState = {
   name: "",
@@ -32,178 +54,121 @@ const initialForm: FormState = {
   comments: "",
 };
 
-const initialValidation: FormState = {
-  /* se coloca "inputEstiloBase" ya que se está trabajando con los condicionales y con el CSS en ContactForm.js, ya que si en las validaciones de React Developer Tools dice "inputEstiloBase" entonce se mostrará el valor del input por defecto como lo colocamos, pero cuando se escriba bien o mal entonces mostrará los estilos correctos o estilos incorrectos */
-  name: "inputEstiloBase",
-  email: "inputEstiloBase",
-  subject: "inputEstiloBase",
-  comments: "inputEstiloBase",
+const initialValidation: FormValidation = {
+  name: null,
+  email: null,
+  subject: null,
+  comments: null,
 };
 
-/* objeto que hace referencia a los mensajes de error por input */
-const mensajeValidacion = {
-  mensajeVacio: "Este es un campo requerido, no puede ir vacio",
-  mensajeCoincidenciaName:
-    "Este campo solo acepta hasta 20 caracteres, letras mayúsculas, minúsculas y espacios en blanco",
-  mensajeCoincidenciaEmail:
-    "Email incorrecto, coloque un correo con este formato correo@correo.com",
-  mensajeCoincidenciaSubject: "El Asunto no debe exceder los 40 caracteres",
-  mensajeCoincidenciaComments:
-    "Tu comentario no debe exceder los 255 caracteres",
+const MENSAJE_VACIO = "Este es un campo requerido, no puede ir vacío";
+
+/* reglas por campo: expresión regular (opcional) y mensaje si no se cumple */
+const REGLAS: Record<FormField, { regex?: RegExp; mensaje: string }> = {
+  name: {
+    /* letras (con tildes y ñ), espacios, apóstrofo y guion: "O'Connor", "Jean-Pierre" */
+    regex: /^[A-Za-zÀ-ÖØ-öø-ÿÑñ' -]+$/,
+    mensaje: `Este campo solo acepta hasta ${MAX_LENGTH.name} caracteres: letras, espacios, apóstrofos y guiones`,
+  },
+  email: {
+    /* acepta mayúsculas, "+", guiones y guiones bajos: "Juan.Perez+trabajo@mi-empresa.com" */
+    regex: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/,
+    mensaje:
+      "Email incorrecto, coloque un correo con este formato correo@correo.com",
+  },
+  subject: {
+    mensaje: `El asunto no debe exceder los ${MAX_LENGTH.subject} caracteres`,
+  },
+  comments: {
+    mensaje: `Tu comentario no debe exceder los ${MAX_LENGTH.comments} caracteres`,
+  },
 };
 
-/* objeto que hace referencia a las expresiones regulares por input */
-const expresionesRegulares = {
-  expresionRegularName: /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]{1,20}$/,
-  expresionRegularEmail:
-    /^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$/,
-  expresionRegularSubject: /^.{1,40}$/,
-  expresionRegularComments: /^.{1,255}$/,
+/* devuelve "" si el valor es válido o el mensaje de error correspondiente */
+const validateField = (field: FormField, value: string): string => {
+  const trimmed = value.trim();
+  if (!trimmed) return MENSAJE_VACIO;
+
+  const { regex, mensaje } = REGLAS[field];
+  if (trimmed.length > MAX_LENGTH[field]) return mensaje;
+  if (regex && !regex.test(trimmed)) return mensaje;
+
+  return "";
 };
+
+const trimForm = (form: FormState): FormState => ({
+  name: form.name.trim(),
+  email: form.email.trim(),
+  subject: form.subject.trim(),
+  comments: form.comments.trim(),
+});
 
 export const useForm = () => {
-  /* variable de estado para los datos de los inputs del formulario */
-  /* variable de estado para las validaciones de los inputs del formulario */
-  /* variable de estado para el loader del formulario */
-  /* variable de estado para mostrar o no la respuesta una vez enviado el formulario */
   const [formState, setFormState] = useState(initialForm);
   const [validation, setValidation] = useState(initialValidation);
+  const [honeypot, setHoneypot] = useState("");
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<FormResponseStatus>(null);
 
-  /* se usará para detectar si podemos habilitar o deshabilitar el botón del Submit */
-  const validateAll = () => {
-    const validation: FormState = {
-      name: "",
-      email: "",
-      subject: "",
-      comments: "",
+  /* temporizador que limpia el formulario después del envío exitoso. Se cancela si el componente se desmonta */
+  const resetTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) clearTimeout(resetTimer.current);
     };
+  }, []);
+
+  const validateAll = () => {
+    const nextValidation = {} as FormValidation;
     let isValid = true;
 
-    /* ******************** VALIDATION NAME  ********************* */
-    if (!formState.name.trim()) {
-      validation.name = `${mensajeValidacion.mensajeVacio}`;
-      isValid = false;
+    for (const field of Object.keys(formState) as FormField[]) {
+      const message = validateField(field, formState[field]);
+      nextValidation[field] = message;
+      if (message) isValid = false;
     }
 
-    if (
-      formState.name.trim() &&
-      !expresionesRegulares.expresionRegularName.test(formState.name.trim())
-    ) {
-      validation.name = `${mensajeValidacion.mensajeCoincidenciaName}`;
-      isValid = false;
-    }
-    /* ******************** VALIDATION NAME  ********************* */
-
-    /* ******************** VALIDATION EMAIL  ********************* */
-    if (!formState.email.trim()) {
-      validation.email = `${mensajeValidacion.mensajeVacio}`;
-      isValid = false;
-    }
-
-    if (
-      formState.email.trim() &&
-      !expresionesRegulares.expresionRegularEmail.test(formState.email.trim())
-    ) {
-      validation.email = `${mensajeValidacion.mensajeCoincidenciaEmail}`;
-      isValid = false;
-    }
-    /* ******************** VALIDATION EMAIL  ********************* */
-
-    /* ******************** VALIDATION SUBJECT  ********************* */
-    if (!formState.subject.trim()) {
-      validation.subject = `${mensajeValidacion.mensajeVacio}`;
-      isValid = false;
-    }
-
-    if (
-      formState.subject.trim() &&
-      !expresionesRegulares.expresionRegularSubject.test(
-        formState.subject.trim()
-      )
-    ) {
-      validation.subject = `${mensajeValidacion.mensajeCoincidenciaSubject}`;
-      isValid = false;
-    }
-    /* ******************** VALIDATION SUBJECT  ********************* */
-
-    /* ******************** VALIDATION COMMENTS  ********************* */
-    if (!formState.comments.trim()) {
-      validation.comments = `${mensajeValidacion.mensajeVacio}`;
-      isValid = false;
-    }
-
-    if (
-      formState.comments.trim() &&
-      !expresionesRegulares.expresionRegularComments.test(
-        formState.comments.trim()
-      )
-    ) {
-      validation.comments = `${mensajeValidacion.mensajeCoincidenciaComments}`;
-      isValid = false;
-    }
-    /* ******************** VALIDATION COMMENTS  ********************* */
-
-    if (!isValid) {
-      setValidation(validation);
-    }
-
+    setValidation(nextValidation);
     return isValid;
   };
 
-  /* se usará para confirmar las validaciones de los input del formulario y sus mensajes aparecerán debajo de su input correspondiente como también en su variable de estado */
-  const validateOne = (e: KeyboardEvent<FormElement>) => {
-    const fieldName = e.currentTarget.name as FormField;
-    const value = formState[fieldName];
-    let message = "";
+  /* mientras se escribe solo se valida un campo que ya se tocó, para no mostrar errores antes de tiempo */
+  const handleChange = (e: ChangeEvent<FormElement>) => {
+    const field = e.target.name as FormField;
+    const value = e.target.value;
 
-    if (!value) {
-      message = `${mensajeValidacion.mensajeVacio}`;
-    }
+    setFormState((prev) => ({ ...prev, [field]: value }));
 
-    if (
-      value &&
-      fieldName === "name" &&
-      !expresionesRegulares.expresionRegularName.test(value.trim())
-    ) {
-      message = `${mensajeValidacion.mensajeCoincidenciaName}`;
-    }
-
-    if (
-      value &&
-      fieldName === "email" &&
-      !expresionesRegulares.expresionRegularEmail.test(value.trim())
-    ) {
-      message = `${mensajeValidacion.mensajeCoincidenciaEmail}`;
-    }
-
-    if (
-      value &&
-      fieldName === "subject" &&
-      !expresionesRegulares.expresionRegularSubject.test(value.trim())
-    ) {
-      message = `${mensajeValidacion.mensajeCoincidenciaSubject}`;
-    }
-
-    if (
-      value &&
-      fieldName === "comments" &&
-      !expresionesRegulares.expresionRegularComments.test(value.trim())
-    ) {
-      message = `${mensajeValidacion.mensajeCoincidenciaComments}`;
-    }
-
-    setValidation({ ...validation, [fieldName]: message });
+    setValidation((prev) =>
+      prev[field] === null
+        ? prev
+        : { ...prev, [field]: validateField(field, value) },
+    );
   };
 
-  const handleChange = (e: ChangeEvent<FormElement>) => {
-    setFormState({
-      ...formState,
+  /* al salir de un campo se valida, salvo que se haya pasado por él sin escribir nada (por ejemplo navegando con Tab) */
+  const handleBlur = (e: FocusEvent<FormElement>) => {
+    const field = e.target.name as FormField;
+    const value = formState[field];
 
-      /* Nombre de Propiedad Calculado: Puedes especificar el nombre de una propiedad a través de una expresión si la pones entre corchetes */
-      [e.target.name]: e.target.value,
-    });
+    if (validation[field] === null && !value) return;
+
+    setValidation((prev) => ({ ...prev, [field]: validateField(field, value) }));
+  };
+
+  const handleHoneypotChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setHoneypot(e.target.value);
+  };
+
+  const showSuccessAndReset = () => {
+    setResponse("success");
+
+    /* después de mostrar el mensaje de éxito se limpia el formulario */
+    resetTimer.current = setTimeout(() => {
+      setFormState(initialForm);
+      setValidation(initialValidation);
+      setResponse(null);
+    }, 3000);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
@@ -215,20 +180,31 @@ export const useForm = () => {
     const isValid = validateAll();
     if (!isValid) return;
 
+    /* si el campo trampa tiene contenido lo llenó un bot: se simula un envío exitoso sin mandar nada */
+    if (honeypot) {
+      showSuccessAndReset();
+      return;
+    }
+
     setLoading(true);
     setResponse(null);
 
+    const data = trimForm(formState);
+
     helpHttp()
-      .post<FormSubmitResponse>(
-        "https://formsubmit.co/ajax/abelboritguitton@gmail.com",
-        {
-          body: formState,
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
+      .post<FormSubmitResponse>(FORMSUBMIT_ENDPOINT, {
+        body: {
+          ...data,
+          /* opciones de formsubmit: asunto del correo recibido, formato en tabla y campo trampa */
+          _subject: `Portafolio: ${data.subject}`,
+          _template: "table",
+          [HONEYPOT_FIELD]: honeypot,
         },
-      )
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
       .then((respuesta) => {
         setLoading(false);
 
@@ -242,25 +218,20 @@ export const useForm = () => {
           return;
         }
 
-        setResponse("success");
-
-        /* después de mostrar el mensaje de éxito se limpia el formulario (antes se recargaba toda la página) */
-        setTimeout(() => {
-          setFormState(initialForm);
-          setValidation(initialValidation);
-          setResponse(null);
-        }, 3000);
+        showSuccessAndReset();
       });
   };
 
   return {
-    hookFormState: formState,
-    hookValidation: validation,
-    hookLoading: loading,
-    hookResponse: response,
+    formState,
+    validation,
+    honeypot,
+    loading,
+    response,
 
-    hookhandleKeyUp: validateOne,
-    hookHandleChange: handleChange,
-    hookHandleSubmit: handleSubmit,
+    handleChange,
+    handleBlur,
+    handleHoneypotChange,
+    handleSubmit,
   };
 };

@@ -10,6 +10,9 @@ export interface HelpHttpError {
   statusText: string;
 }
 
+const isHelpHttpError = (value: unknown): value is HelpHttpError =>
+  typeof value === "object" && value !== null && "err" in value;
+
 export const helpHttp = () => {
   const customFetch = <T = unknown>(
     endpoint: string,
@@ -38,10 +41,8 @@ export const helpHttp = () => {
 
     if (body) requestOptions.body = JSON.stringify(body);
 
-    setTimeout(() => {
-      /* si después de 8 segundos (8000 milisegundos) no se recibe una respuesta de la petición, entonces abortar la petición fetch y con eso se genera el error (catch) de la petición fetch */
-      controller.abort();
-    }, 8000);
+    /* si después de 8 segundos no se recibe una respuesta se aborta la petición, lo que genera el error (catch) del fetch. El temporizador se cancela cuando la petición termina */
+    const timeoutId = setTimeout(() => controller.abort(), 8000);
 
     return fetch(endpoint, requestOptions)
       .then(
@@ -55,9 +56,22 @@ export const helpHttp = () => {
                 respuesta.statusText || "Ocurrió un problema con el servidor",
             }),
       )
-      .catch((error: HelpHttpError) => {
-        return error;
-      });
+      .catch((error: unknown): HelpHttpError => {
+        /* errores de respuesta (los rechazados arriba) */
+        if (isHelpHttpError(error)) return error;
+
+        /* errores de red o petición abortada por el tiempo de espera */
+        const aborted =
+          error instanceof DOMException && error.name === "AbortError";
+        return {
+          err: true,
+          status: "00",
+          statusText: aborted
+            ? "El servidor tardó demasiado en responder"
+            : "No se pudo conectar con el servidor",
+        };
+      })
+      .finally(() => clearTimeout(timeoutId));
   };
 
   const fetchPost = <T = unknown>(url: string, options: HelpHttpOptions = {}) => {

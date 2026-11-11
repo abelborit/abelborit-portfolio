@@ -51,6 +51,35 @@
   height: 150px;
 }
 
+/* el foco con teclado debe verse (outline: none lo ocultaba) */
+.contact_form .input_text:focus-visible,
+.contact_form .textarea:focus-visible {
+  outline: 2px solid var(--accentColor);
+  outline-offset: 2px;
+}
+
+/* oculto visualmente pero disponible para lectores de pantalla */
+.visually_hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* campo trampa para bots: fuera de la pantalla (no display: none, que algunos bots detectan) */
+.honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact_form *::placeholder {
   /* en .contact_form a todos los elementos que tenga el atributo::placeholder */
   color: var(--textColorWhite);
