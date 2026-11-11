@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import type { SectionRef, SectionRefs } from "../../types/navigation";
 import { Header } from "../../components/Header/Header";
 import { AboutSection } from "./AboutSection";
@@ -10,13 +10,6 @@ import { ScrollTopBtn } from "../../components/ScrollTopBtn/ScrollTopBtn";
 import styles from "./LandingPage.module.css";
 
 export const LandingPage = () => {
-  /* se coloca este estado ya que cuando se cambia de ruta hay un desplazamiento hacia arriba, entonces con este setTimeout() hace que se espere lo mínimo para que la página ya se encuentre en la parte de arriba y se muestre con normalidad la página */
-  const [loaderInitial, setLoaderInitial] = useState(true);
-
-  setTimeout(() => {
-    setLoaderInitial(false);
-  }, 1);
-
   const aboutREF = useRef<HTMLDivElement>(null);
   const resumenREF = useRef<HTMLDivElement>(null);
   const projectREF = useRef<HTMLDivElement>(null);
@@ -42,26 +35,22 @@ export const LandingPage = () => {
 
   return (
     <>
-      {loaderInitial ? null : (
-        <>
-          <Header
-            handleScrollToSection={handleScrollToSection}
-            referencias={REFERENCIAS}
-          ></Header>
+      <Header
+        handleScrollToSection={handleScrollToSection}
+        referencias={REFERENCIAS}
+      ></Header>
 
-          <AboutSection aboutREF={aboutREF}></AboutSection>
+      <AboutSection aboutREF={aboutREF}></AboutSection>
 
-          <ResumenSection resumenREF={resumenREF}></ResumenSection>
+      <ResumenSection resumenREF={resumenREF}></ResumenSection>
 
-          <ProjectsSection projectREF={projectREF}></ProjectsSection>
+      <ProjectsSection projectREF={projectREF}></ProjectsSection>
 
-          <ContactSection contactREF={contactREF}></ContactSection>
+      <ContactSection contactREF={contactREF}></ContactSection>
 
-          <ScrollTopBtn></ScrollTopBtn>
+      <ScrollTopBtn></ScrollTopBtn>
 
-          <div className={styles.sky_color}></div>
-        </>
-      )}
+      <div className={styles.sky_color}></div>
     </>
   );
 };
