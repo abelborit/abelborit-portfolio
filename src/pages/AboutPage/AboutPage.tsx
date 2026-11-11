@@ -6,39 +6,14 @@ import { Link } from "react-router";
 import styles from "./AboutPage.module.css";
 import { GTM_EVENTS } from "../../utils/gtm";
 import { getAge } from "../../helpers/getAge";
-
-const HABILIDADES = [
-  "React JS",
-  "Microfrontends",
-  "JavaScript & TypeScript",
-  "Zustand",
-  "TanStack Query",
-  "Tailwind CSS",
-  "Git & GitHub",
-  "Uso y creación de paquetes",
-  "Angular",
-  "Gatsby",
-  "React Native",
-  "SEO (Search Engine Optimization)",
-  "HTML & CSS (Flex & Grid)",
-  "Styled Components",
-  "Conocimientos en Azure",
-  "SASS",
-  "UI/UX",
-  "Figma",
-  "Postman",
-  "Metodología SCRUM",
-  "GitHub Copilot",
-  "Prompt engineering",
-  "Best practices for the use of AI",
-];
+import { SKILLS } from "../../data/skills";
+import { BoltIcon } from "../../components/icons/BoltIcon";
+import { DoubleArrowLeftIcon } from "../../components/icons/DoubleArrowLeftIcon";
 
 export const AboutPage = () => {
-  const listaHabilidades = HABILIDADES.map((elemento) => (
+  const listaHabilidades = SKILLS.map((elemento) => (
     <p key={elemento}>
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <path d="M0 256L28.5 28c2-16 15.6-28 31.8-28H228.9c15 0 27.1 12.1 27.1 27.1c0 3.2-.6 6.5-1.7 9.5L208 160H347.3c20.2 0 36.7 16.4 36.7 36.7c0 7.4-2.2 14.6-6.4 20.7l-192.2 281c-5.9 8.6-15.6 13.7-25.9 13.7h-2.9c-15.7 0-28.5-12.8-28.5-28.5c0-2.3 .3-4.6 .9-6.9L176 288H32c-17.7 0-32-14.3-32-32z" />
-      </svg>
+      <BoltIcon />
 
       <span>{elemento}</span>
     </p>
@@ -76,9 +51,7 @@ export const AboutPage = () => {
                 })
               }
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
-              </svg>
+              <DoubleArrowLeftIcon />
 
               <span>Regresar</span>
             </Link>

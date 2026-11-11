@@ -1,6 +1,7 @@
-import styles from "../../pages/ResumenPage/ResumenPage.module.css";
+import type { TimelineItem } from "../types/content";
 
-const EDUCATION = [
+/* estudios y formación (de más reciente a más antiguo) */
+export const EDUCATION: TimelineItem[] = [
   {
     title: "Frontend Developer (autodidacta)",
     description:
@@ -23,24 +24,3 @@ const EDUCATION = [
     since: "Abr 2015",
   },
 ];
-
-export const EducationData = () => {
-  const listaEducacion = EDUCATION.map((elemento, index) => (
-    <div className={styles.content_card} key={index}>
-      <div className={styles.card_date}>
-        <div className={styles.card_date_line}></div>
-        <span>{elemento.since}</span>
-        <span>-</span>
-        <span>{elemento.to}</span>
-        <div className={styles.card_date_line}></div>
-      </div>
-
-      <div className={styles.card_info}>
-        <h4>{elemento.title}</h4>
-        <p>{elemento.description}</p>
-      </div>
-    </div>
-  ));
-
-  return <>{listaEducacion}</>;
-};

@@ -1,6 +1,7 @@
-import styles from "../../pages/ResumenPage/ResumenPage.module.css";
+import type { TimelineItem } from "../types/content";
 
-const EXPERIENCE = [
+/* experiencia laboral (de más reciente a más antiguo) */
+export const EXPERIENCE: TimelineItem[] = [
   {
     title: "Software Engineer - Encora, Perú (Remoto)",
     description: `Cliente PRIMA AFP. Parte del desarrollo en la implementación de requerimientos, trámites y funcionalidades para la nueva web privada Agencia Virtual (MicroFrontends), incluyendo submódulos y paquetes privados. Soporte técnico y funcional frente a observaciones, incidencias o tareas adicionales relacionadas con el flujo de trabajo, garantizando continuidad operativa y cumplimiento de entregables`,
@@ -38,24 +39,3 @@ const EXPERIENCE = [
     since: "Nov 2020",
   },
 ];
-
-export const ExperienceData = () => {
-  const listaExperiencia = EXPERIENCE.map((elemento, index) => (
-    <div className={styles.content_card} key={index}>
-      <div className={styles.card_date}>
-        <div className={styles.card_date_line}></div>
-        <span>{elemento.since}</span>
-        <span>-</span>
-        <span>{elemento.to}</span>
-        <div className={styles.card_date_line}></div>
-      </div>
-
-      <div className={styles.card_info}>
-        <h4>{elemento.title}</h4>
-        <p>{elemento.description}</p>
-      </div>
-    </div>
-  ));
-
-  return <>{listaExperiencia}</>;
-};

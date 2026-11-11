@@ -1,10 +1,12 @@
 import { HeaderSection } from "../../components/HeaderSection/HeaderSection";
-import { EducationData } from "../../components/EducationData/EducationData";
-import { ExperienceData } from "../../components/ExperienceData/ExperienceData";
+import { Timeline } from "../../components/Timeline/Timeline";
+import { EDUCATION } from "../../data/education";
+import { EXPERIENCE } from "../../data/experience";
 import { Link } from "react-router";
 
 import styles from "./ResumenPage.module.css";
 import { GTM_EVENTS } from "../../utils/gtm";
+import { DoubleArrowLeftIcon } from "../../components/icons/DoubleArrowLeftIcon";
 
 export const ResumenPage = () => {
   return (
@@ -39,9 +41,7 @@ export const ResumenPage = () => {
                 })
               }
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160zm352-160l-160 160c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L301.3 256 438.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0z" />
-              </svg>
+              <DoubleArrowLeftIcon />
 
               <span>Regresar</span>
             </Link>
@@ -61,7 +61,7 @@ export const ResumenPage = () => {
           </div>
 
           <div className={styles.resume_content_info}>
-            <EducationData></EducationData>
+            <Timeline items={EDUCATION} />
           </div>
         </div>
       </section>
@@ -80,7 +80,7 @@ export const ResumenPage = () => {
           </div>
 
           <div className={styles.resume_content_info}>
-            <ExperienceData></ExperienceData>
+            <Timeline items={EXPERIENCE} />
           </div>
         </div>
       </section>
