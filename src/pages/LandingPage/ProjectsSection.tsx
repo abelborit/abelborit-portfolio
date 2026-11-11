@@ -1,6 +1,6 @@
 import type { SectionRef } from "../../types/navigation";
 import { Link } from "react-router";
-import projectsImage from "../../assets/original-images/projects-image.jpg";
+import projectsImage from "../../assets/optimized-images/projects-image-optimized.webp";
 import styles from "./LandingPage.module.css";
 import { GTM_EVENTS } from "../../utils/gtm";
 
@@ -11,7 +11,15 @@ export const ProjectsSection = (props: { projectREF: SectionRef }) => {
       className={`${styles.section} ${styles.slideLeftReturn}`}
     >
       <div className={`${styles.image_container} ${styles.slideRightReturn}`}>
-        <img className={styles.image} src={projectsImage} alt="Imagen Acerca" />
+        <img
+          className={styles.image}
+          src={projectsImage}
+          alt="Imagen Acerca"
+          width={1920}
+          height={1508}
+          loading="lazy"
+          decoding="async"
+        />
         <div className={styles.image_border}></div>
       </div>
 

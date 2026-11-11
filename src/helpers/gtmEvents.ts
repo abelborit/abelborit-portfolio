@@ -55,7 +55,9 @@ const sanitizeEventParams = (eventParams: EventParams): EventParams => {
  * Mezcla los parámetros de query string en el eventParams, sin sobrescribir claves existentes.
  */
 const mergeQueryParams = (url: URL, eventParams: EventParams) => {
-  console.log("[GTM][mergeQueryParams] =>", { url, eventParams });
+  if (import.meta.env.DEV) {
+    console.log("[GTM][mergeQueryParams] =>", { url, eventParams });
+  }
 
   url.searchParams.forEach((value, key) => {
     if (EXCLUDED_DATA_LAYER_KEYS.has(key.toLowerCase())) {
@@ -75,7 +77,9 @@ const mergeQueryParams = (url: URL, eventParams: EventParams) => {
 const sendToDataLayer =
   window.sendToDataLayer ||
   ((eventName: string, eventParams: EventParams) => {
-    console.info("[GTM][sendToDataLayer] =>", { eventName, eventParams });
+    if (import.meta.env.DEV) {
+      console.info("[GTM][sendToDataLayer] =>", { eventName, eventParams });
+    }
 
     // Inicializar dataLayer
     window.dataLayer = window.dataLayer || [];

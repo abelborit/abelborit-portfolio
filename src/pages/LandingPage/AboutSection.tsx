@@ -1,6 +1,6 @@
 import type { SectionRef } from "../../types/navigation";
 import { Link } from "react-router";
-import aboutImage from "../../assets/original-images/about-image.jpg";
+import aboutImage from "../../assets/optimized-images/about-image-optimized.webp";
 import styles from "./LandingPage.module.css";
 import { GTM_EVENTS } from "../../utils/gtm";
 
@@ -11,7 +11,14 @@ export const AboutSection = (props: { aboutREF: SectionRef }) => {
       className={`${styles.section} ${styles.slideLeftReturn}`}
     >
       <div className={`${styles.image_container} ${styles.slideRightReturn}`}>
-        <img className={styles.image} src={aboutImage} alt="Imagen Acerca" />
+        <img
+          className={styles.image}
+          src={aboutImage}
+          alt="Imagen Acerca"
+          width={1920}
+          height={1508}
+          fetchPriority="high"
+        />
         <div className={styles.image_border}></div>
       </div>
 

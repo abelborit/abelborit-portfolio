@@ -1,5 +1,5 @@
 import { HeaderSection } from "../../components/HeaderSection/HeaderSection";
-import profileOptimized from "../../assets/optimized-images/profile-optimized.jpg";
+import profileOptimized from "../../assets/optimized-images/profile-optimized.webp";
 import curriculumPDF from "../../assets/AbelBoritCurriculumVitae.pdf";
 import { Link } from "react-router";
 
@@ -129,7 +129,14 @@ export const AboutPage = () => {
             </div>
 
             <div className={styles.about_bio_profile}>
-              <img src={profileOptimized} alt="profile" />
+              <img
+                src={profileOptimized}
+                alt="profile"
+                width={600}
+                height={600}
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
