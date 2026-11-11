@@ -1,0 +1,1 @@
+var e=`/abelborit-portfolio/assets/about-image-optimized-DZ3ofp2v.webp`;export{e as t};
