@@ -36,9 +36,11 @@ export const LandingPage = () => {
   return (
     <>
       <Header
-        handleScrollToSection={handleScrollToSection}
-        referencias={REFERENCIAS}
-      ></Header>
+        navigation={{
+          handleScrollToSection: handleScrollToSection,
+          referencias: REFERENCIAS,
+        }}
+      />
 
       <AboutSection aboutREF={aboutREF}></AboutSection>
 

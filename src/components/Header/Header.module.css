@@ -1,19 +1,9 @@
+/* ****************************** Header ****************************** */
 .header {
   z-index: 999;
   position: sticky;
   top: 0;
   left: 0;
-  background-color: transparent;
-  background-color: rgba(7, 33, 66, 0.3);
-  background: linear-gradient(
-    to bottom,
-    rgba(7, 33, 66, 0.3),
-    rgba(7, 33, 66, 0.3),
-    transparent
-  );
-  backdrop-filter: blur(2.5px);
-  /* box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.5),
-    0px 10px 10px -10px rgba(0, 0, 0, 0.5); */
   width: 100%;
   height: 3.5rem;
   display: flex;
@@ -22,69 +12,73 @@
   align-items: center;
 }
 
-.boingInUp {
-  -webkit-animation-name: boingInUp;
-  animation-name: boingInUp;
-  -webkit-animation-duration: 0.8s;
-  animation-duration: 0.8s;
+/* LandingPage: fondo semitransparente que se funde con el contenido */
+.header_landing {
+  background: linear-gradient(
+    to bottom,
+    rgba(7, 33, 66, 0.3),
+    rgba(7, 33, 66, 0.3),
+    transparent
+  );
+  backdrop-filter: blur(2.5px);
 }
 
-@-webkit-keyframes boingInUp {
-  0% {
-    opacity: 0;
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(-90deg);
-    transform: perspective(800px) rotateX(-90deg);
-  }
-  50% {
-    opacity: 1;
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(50deg);
-    transform: perspective(800px) rotateX(50deg);
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform-origin: 50% 0%;
-    transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(0deg);
-    transform: perspective(800px) rotateX(0deg);
-  }
+/* páginas internas y 404: fondo sólido */
+.header_page {
+  background-color: #020b16;
+  backdrop-filter: blur(2px);
+  box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.5);
+}
+
+.boingInUp {
+  animation-name: boingInUp;
+  animation-duration: 0.8s;
 }
 
 @keyframes boingInUp {
   0% {
     opacity: 0;
-    -webkit-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(-90deg);
     transform: perspective(800px) rotateX(-90deg);
   }
   50% {
     opacity: 1;
-    -webkit-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(50deg);
     transform: perspective(800px) rotateX(50deg);
   }
   100% {
     opacity: 1;
-    -webkit-transform-origin: 50% 0%;
     transform-origin: 50% 0%;
-    -webkit-transform: perspective(800px) rotateX(0deg);
     transform: perspective(800px) rotateX(0deg);
   }
 }
 
-.header .link_name {
-  width: 50%;
+.link_name,
+.link_media {
   height: 100%;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
   align-items: center;
+}
+
+.header_landing .link_name {
+  width: 50%;
+  justify-content: flex-start;
   margin-left: 1.5rem;
+}
+
+.header_page .link_name,
+.header_page .link_media {
+  width: 100%;
+  justify-content: center;
+}
+
+.header_page .link_name {
+  margin-left: 1rem;
+}
+
+.header_page .link_media {
+  margin-right: 1rem;
 }
 
 .link_name .link_name_btn {
@@ -94,7 +88,6 @@
   cursor: pointer;
   font-size: 1.4rem;
   color: var(--textColorWhite);
-  /* color: #42caff; */
   font-weight: bold;
   transition: all 0.3s ease;
 }
@@ -104,22 +97,59 @@
   color: var(--secondaryColor);
 }
 
+.link_media a {
+  margin: 0 0.3rem;
+}
+
+.link_media svg {
+  width: 25px;
+  height: 25px;
+  fill: var(--textColorWhite);
+  transition: all 0.3s ease;
+}
+
+.link_media svg:hover {
+  transform: scale(1.15);
+  fill: var(--secondaryColor);
+}
+
 @media screen and (min-width: 768px) {
-  .header .link_name {
+  .header_landing .link_name {
     width: 40%;
+  }
+
+  .header_page .link_name,
+  .header_page .link_media {
+    width: 18%;
   }
 
   .link_name .link_name_btn {
     font-size: 1.6rem;
   }
+
+  .link_media a {
+    margin: 0 0.6rem;
+  }
+
+  .link_media svg {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
-  .header .link_name {
-    width: 40%;
+  .header_page .link_name,
+  .header_page .link_media {
+    width: 20%;
   }
 
   .link_name .link_name_btn {
     font-size: 1.8rem;
   }
+
+  .link_media svg {
+    width: 32px;
+    height: 32px;
+  }
 }
+/* ******************************************************************** */

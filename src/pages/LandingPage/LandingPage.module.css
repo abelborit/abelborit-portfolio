@@ -137,14 +137,7 @@
   }
 }
 
-.image_container .styles.image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
+/* la imagen (.image) usa la regla global de img en index.css: ancho completo y alto según su proporción, que es la que sigue el marco .image_border. Un object-fit: cover a 100% de alto la recortaría en cuadrado */
 .image_container .image_border {
   border: 4px solid var(--secondaryColor);
   /* background-color: var(--secondaryColor); */

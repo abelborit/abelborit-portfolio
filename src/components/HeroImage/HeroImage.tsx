@@ -12,13 +12,14 @@ export const HeroImage = () => {
           <div className={styles.vanishIn}>
             <div className={styles.heroImage_content}>
               <div className={styles.heroImage_text}>
-                <h2>Hey, yo soy</h2>
+                <p className={styles.heroImage_greeting}>Hey, yo soy</p>
 
                 <h1 className={styles.typeWriter}>Abel Borit Guitton</h1>
-                {/* <h1>Abel Borit Guitton</h1> */}
 
-                <h3>Frontend Developer con grado profesional en ingeniería</h3>
-                <p>
+                <p className={styles.heroImage_subtitle}>
+                  Frontend Developer con grado profesional en ingeniería
+                </p>
+                <p className={styles.heroImage_description}>
                   Siento curiosidad por la tecnología y creo que la
                   transformación digital será la llave para resolver retos en el
                   futuro. Disfruto llevar acabo la maquetación, diseño e

@@ -20,7 +20,7 @@ export const Timeline = ({ items }: TimelineProps) => {
           </div>
 
           <div className={styles.card_info}>
-            <h4>{item.title}</h4>
+            <h3>{item.title}</h3>
             <p>{item.description}</p>
           </div>
         </div>
