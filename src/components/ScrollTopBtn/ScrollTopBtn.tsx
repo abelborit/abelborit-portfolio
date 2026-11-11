@@ -6,33 +6,35 @@ export const ScrollTopBtn = () => {
   const [effectActive, setEffectActive] = useState(false);
 
   useEffect(() => {
+    /* último estado aplicado: solo se actualiza cuando se cruza el umbral de 400px, no en cada evento de scroll */
+    let isVisible: boolean | null = null;
+    let timeoutId: number | undefined;
+
     function onScroll() {
-      if (window.scrollY >= 400) {
-        setTimeout(() => {
-          setScrollActive(true);
-        }, 100);
+      const shouldShow = window.scrollY >= 400;
+      if (shouldShow === isVisible) return;
+      isVisible = shouldShow;
 
-        setEffectActive(true);
-      } else if (window.scrollY < 400) {
-        setTimeout(() => {
-          setScrollActive(false);
-        }, 100);
-
-        setEffectActive(false);
-      }
+      /* primero se aplica la animación de entrada/salida y luego (100ms) se monta/desmonta el botón */
+      setEffectActive(shouldShow);
+      window.clearTimeout(timeoutId);
+      timeoutId = window.setTimeout(() => {
+        setScrollActive(shouldShow);
+      }, 100);
     }
 
-    /* en cada render se está colocando un eventListener de "scroll" y tiene que ser limpiado porque en el primer "scroll" tenemos un addEventListener pero en el segundo "scroll" tenemos el anterior y el nuevo que pongamos y así sucesivamente se van acumulando y al final afecta al rendimiento porque se está mandando a llamar a la función "onScroll" más veces de las necesarias */
-    window.addEventListener("scroll", onScroll);
+    /* se registra una sola vez (dependencias vacías). "passive" le indica al navegador que no se llamará a preventDefault, así el scroll no se bloquea */
+    window.addEventListener("scroll", onScroll, { passive: true });
 
-    // console.log(scrollActive);
-    // console.log(currentScroll);
+    /* revisa la posición inicial (por ejemplo al volver con "atrás" y restaurar el scroll) */
+    onScroll();
 
-    /* estas funciones de limpiado que tiene useEffect() se pueden colocar por ejemplo cuando se colocan addEventListener() para que no se vayan acumulando de forma desproporcionada. No hace falta colocar por ejemplo cuando se llama a una API porque solo queremos que muestre la información  */
+    /* función de limpieza: quita el listener y el timeout pendiente al desmontar */
     return function cleanUp() {
       window.removeEventListener("scroll", onScroll);
+      window.clearTimeout(timeoutId);
     };
-  }, [scrollActive]);
+  }, []);
 
   function handleScrollToTop() {
     window.scrollTo({

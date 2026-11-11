@@ -129,16 +129,24 @@ export const ContactForm = () => {
         <div className={styles.btn_effect_container}>
           <input
             id="input-submit"
-            className={`${styles.input_submit} ${styles.btn_effect}`}
+            className={styles.btn_effect}
             type="submit"
             value="Enviar"
+            disabled={hookLoading}
           />
         </div>
 
         {hookLoading && <Loader></Loader>}
+
+        {hookResponse === "error" && (
+          <p className={styles.incorrect_response} role="alert">
+            No se pudo enviar el mensaje. Por favor, inténtalo nuevamente en
+            unos minutos.
+          </p>
+        )}
       </form>
 
-      {hookResponse && (
+      {hookResponse === "success" && (
         <div className={styles.correct_response}>
           <p>Los datos han sido enviados correctamente</p>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

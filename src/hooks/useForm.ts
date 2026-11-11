@@ -14,6 +14,15 @@ interface FormState {
 }
 
 type FormField = keyof FormState;
+
+/* estado de la respuesta del envío: null = sin enviar */
+export type FormResponseStatus = "success" | "error" | null;
+
+/* respuesta de https://formsubmit.co/ajax/... */
+interface FormSubmitResponse {
+  success: "true" | "false" | boolean;
+  message?: string;
+}
 type FormElement = HTMLInputElement | HTMLTextAreaElement;
 
 const initialForm: FormState = {
@@ -60,7 +69,7 @@ export const useForm = () => {
   const [formState, setFormState] = useState(initialForm);
   const [validation, setValidation] = useState(initialValidation);
   const [loading, setLoading] = useState(false);
-  const [response, setResponse] = useState<boolean | null>(null);
+  const [response, setResponse] = useState<FormResponseStatus>(null);
 
   /* se usará para detectar si podemos habilitar o deshabilitar el botón del Submit */
   const validateAll = () => {
@@ -199,33 +208,49 @@ export const useForm = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    /* evita envíos duplicados mientras hay una petición en curso */
+    if (loading) return;
+
     const isValid = validateAll();
+    if (!isValid) return;
 
-    if (!isValid) {
-      return false;
-    } else {
-      setLoading(true);
+    setLoading(true);
+    setResponse(null);
 
-      helpHttp()
-        .post("https://formsubmit.co/ajax/abelboritguitton@gmail.com", {
+    helpHttp()
+      .post<FormSubmitResponse>(
+        "https://formsubmit.co/ajax/abelboritguitton@gmail.com",
+        {
           body: formState,
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
-        })
+        },
+      )
+      .then((respuesta) => {
+        setLoading(false);
 
-        .then(() => {
-          setLoading(false);
-          setResponse(true);
+        /* helpHttp no lanza errores: los devuelve como { err: true, ... }. Además formsubmit puede responder 200 con success: "false" (por ejemplo si el formulario no está activado) */
+        const isError =
+          "err" in respuesta || String(respuesta.success) !== "true";
 
-          setTimeout(() => {
-            setFormState(initialForm);
-            setResponse(false);
-            window.location.reload();
-          }, 3000);
-        });
-    }
+        if (isError) {
+          /* se mantienen los datos del formulario para que se pueda reintentar */
+          setResponse("error");
+          return;
+        }
+
+        setResponse("success");
+
+        /* después de mostrar el mensaje de éxito se limpia el formulario (antes se recargaba toda la página) */
+        setTimeout(() => {
+          setFormState(initialForm);
+          setValidation(initialValidation);
+          setResponse(null);
+        }, 3000);
+      });
   };
 
   return {
