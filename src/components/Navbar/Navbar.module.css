@@ -69,6 +69,19 @@
   color: var(--secondaryColor);
 }
 
+/* botón dentro de cada <li>: sin estilos propios, hereda tipografía y color del <li> (.link_btn) para verse igual que antes */
+.link_action {
+  all: unset;
+  cursor: pointer;
+}
+
+/* indicador de foco visible al navegar con teclado */
+.link_action:focus-visible {
+  outline: 2px solid var(--secondaryColor);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
 @media screen and (max-width: 768px) {
   .navbar .linkPage_desktop {
     display: none;

@@ -131,7 +131,7 @@ export const AboutPage = () => {
             <div className={styles.about_bio_profile}>
               <img
                 src={profileOptimized}
-                alt="profile"
+                alt="Foto de perfil de Abel Borit Guitton"
                 width={600}
                 height={600}
                 loading="lazy"

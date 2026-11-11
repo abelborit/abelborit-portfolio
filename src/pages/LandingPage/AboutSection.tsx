@@ -14,7 +14,7 @@ export const AboutSection = (props: { aboutREF: SectionRef }) => {
         <img
           className={styles.image}
           src={aboutImage}
-          alt="Imagen Acerca"
+          alt=""
           width={1920}
           height={1508}
           fetchPriority="high"

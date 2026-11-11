@@ -1,16 +1,10 @@
-import type { NavigationProps, SectionRefs } from "../../types/navigation";
+import type { NavigationProps } from "../../types/navigation";
 import { useEffect, useRef, useState } from "react";
+import { NAV_ITEMS } from "./navItems";
 import styles from "./Navbar.module.css";
 
 /* duración de la animación de salida del menú (slideLeft) antes de desmontarlo */
 const CLOSE_ANIMATION_MS = 450;
-
-const NAV_ITEMS: { label: string; ref: keyof SectionRefs }[] = [
-  { label: "Acerca", ref: "aboutREF" },
-  { label: "Resumen", ref: "resumenREF" },
-  { label: "Proyectos", ref: "projectREF" },
-  { label: "Contacto", ref: "contactREF" },
-];
 
 export const NavbarMobile = (props: NavigationProps) => {
   const [open, setOpen] = useState(false);
@@ -49,6 +43,9 @@ export const NavbarMobile = (props: NavigationProps) => {
       <button
         className={`${styles.hamburger} ${open ? styles.is_active : ""}`}
         onClick={effectFunction}
+        aria-label={effectActive ? "Cerrar menú" : "Abrir menú"}
+        aria-expanded={effectActive}
+        aria-controls="mobile-menu"
       >
         <div className={`${styles.layer} ${styles.layer_top}`}></div>
         <div className={`${styles.layer} ${styles.layer_mid}`}></div>
@@ -57,21 +54,24 @@ export const NavbarMobile = (props: NavigationProps) => {
 
       {open && (
         <div
+          id="mobile-menu"
           className={`${styles.links_mobile} ${
             effectActive ? styles.slideLeftReturn : styles.slideLeft
           }`}
         >
           <ul>
             {NAV_ITEMS.map((item) => (
-              <li
-                key={item.ref}
-                className={styles.link_btn}
-                onClick={() => {
-                  props.handleScrollToSection(props.referencias[item.ref]);
-                  closeMenu(); // para cerrar el menú cuando se haga click
-                }}
-              >
-                {item.label}
+              <li key={item.ref} className={styles.link_btn}>
+                <button
+                  type="button"
+                  className={styles.link_action}
+                  onClick={() => {
+                    props.handleScrollToSection(props.referencias[item.ref]);
+                    closeMenu(); // para cerrar el menú cuando se haga click
+                  }}
+                >
+                  {item.label}
+                </button>
               </li>
             ))}
           </ul>

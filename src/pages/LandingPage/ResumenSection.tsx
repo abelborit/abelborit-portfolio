@@ -14,7 +14,7 @@ export const ResumenSection = (props: { resumenREF: SectionRef }) => {
         <img
           className={styles.image}
           src={resumenImage}
-          alt="Imagen Acerca"
+          alt=""
           width={1920}
           height={1509}
           loading="lazy"
