@@ -1,8 +1,11 @@
 import type { ChangeEvent, FocusEvent } from "react";
 import Loader from "../Loader/Loader";
+import { buttonClass, buttonStyles } from "../Button/button";
+import { ArrowRightIcon, CheckIcon } from "../icons";
 import {
   HONEYPOT_FIELD,
   MAX_LENGTH,
+  REASONS,
   useForm,
   type FieldValidation,
   type FormField,
@@ -14,7 +17,6 @@ type FormElement = HTMLInputElement | HTMLTextAreaElement;
 interface FieldProps {
   name: FormField;
   label: string;
-  placeholder: string;
   value: string;
   validation: FieldValidation;
   onChange: (e: ChangeEvent<FormElement>) => void;
@@ -22,13 +24,13 @@ interface FieldProps {
   type?: "text" | "email";
   autoComplete?: string;
   multiline?: boolean;
+  className?: string;
 }
 
-/* input o textarea con su label (oculto visualmente pero leído por lectores de pantalla) y su mensaje de error asociado */
+/* campo con etiqueta visible y su mensaje de error asociado (aria-describedby) */
 const Field = ({
   name,
   label,
-  placeholder,
   value,
   validation,
   onChange,
@@ -36,23 +38,18 @@ const Field = ({
   type = "text",
   autoComplete = "off",
   multiline = false,
+  className = "",
 }: FieldProps) => {
   const id = `input-${name}`;
   const errorId = `${id}-error`;
   const hasError = Boolean(validation);
 
-  /* null = sin tocar (estilo base), "" = correcto, texto = incorrecto */
-  const stateClass =
-    validation === null
-      ? ""
-      : hasError
-        ? styles.input_incorrect
-        : styles.input_correct;
+  /* null = sin tocar, "" = correcto, texto = error */
+  const stateClass = validation === null ? "" : hasError ? styles.invalid : styles.valid;
 
   const commonProps = {
     id,
     name,
-    placeholder,
     value,
     onChange,
     onBlur,
@@ -60,33 +57,21 @@ const Field = ({
     maxLength: MAX_LENGTH[name],
     "aria-invalid": hasError,
     "aria-describedby": hasError ? errorId : undefined,
+    className: `${styles.input} ${stateClass}`,
   };
 
   return (
-    <>
-      <label htmlFor={id} className={styles.visually_hidden}>
+    <div className={`${styles.field} ${className}`}>
+      <label htmlFor={id} className={styles.label}>
         {label}
       </label>
-
-      {multiline ? (
-        <textarea
-          {...commonProps}
-          className={`${styles.textarea} ${stateClass}`}
-        ></textarea>
-      ) : (
-        <input
-          {...commonProps}
-          type={type}
-          className={`${styles.input_text} ${stateClass}`}
-        />
-      )}
-
+      {multiline ? <textarea {...commonProps} rows={5} /> : <input {...commonProps} type={type} />}
       {hasError && (
-        <p id={errorId} className={styles.incorrect_response}>
+        <p id={errorId} className={styles.error}>
           {validation}
         </p>
       )}
-    </>
+    </div>
   );
 };
 
@@ -95,55 +80,71 @@ export const ContactForm = () => {
     formState,
     validation,
     honeypot,
+    reasons,
     loading,
     response,
 
     handleChange,
     handleBlur,
     handleHoneypotChange,
+    handleReasonChange,
     handleSubmit,
   } = useForm();
 
   const fieldHandlers = { onChange: handleChange, onBlur: handleBlur };
 
   return (
-    <div className={styles.contact_content}>
+    <div className={`surface ${styles.card}`}>
       {/* noValidate: se usan las validaciones propias en lugar de los mensajes nativos del navegador */}
-      <form className={styles.contact_form} onSubmit={handleSubmit} noValidate>
-        <Field
-          name="name"
-          label="Nombre"
-          placeholder="Escribe tu nombre..."
-          autoComplete="name"
-          value={formState.name}
-          validation={validation.name}
-          {...fieldHandlers}
-        />
+      <form className={styles.form} onSubmit={handleSubmit} noValidate aria-label="Formulario de contacto">
+        <fieldset className={styles.reasons}>
+          <legend className={styles.legend}>
+            ¿Sobre qué quieres hablar? <span className={styles.hint}>(puedes elegir varias)</span>
+          </legend>
+          {REASONS.map((reason) => (
+            <label key={reason} className={styles.choice}>
+              <input
+                type="checkbox"
+                name="reason"
+                value={reason}
+                checked={reasons.includes(reason)}
+                onChange={handleReasonChange}
+              />
+              <span className={styles.choiceBox} aria-hidden="true">
+                <CheckIcon size={12} />
+              </span>
+              {reason}
+            </label>
+          ))}
+        </fieldset>
 
-        <Field
-          name="email"
-          label="Email"
-          type="email"
-          placeholder="Escribe tu email..."
-          autoComplete="email"
-          value={formState.email}
-          validation={validation.email}
-          {...fieldHandlers}
-        />
+        <div className={styles.row}>
+          <Field
+            name="name"
+            label="Nombre"
+            autoComplete="name"
+            value={formState.name}
+            validation={validation.name}
+            className={styles.half}
+            {...fieldHandlers}
+          />
+          <Field
+            name="email"
+            label="Email"
+            type="email"
+            autoComplete="email"
+            value={formState.email}
+            validation={validation.email}
+            className={styles.half}
+            {...fieldHandlers}
+          />
+        </div>
 
-        <Field
-          name="subject"
-          label="Asunto"
-          placeholder="Escribe el asunto a tratar..."
-          value={formState.subject}
-          validation={validation.subject}
-          {...fieldHandlers}
-        />
+        <Field name="subject" label="Asunto" value={formState.subject} validation={validation.subject} {...fieldHandlers} />
 
         <Field
           name="comments"
-          label="Comentarios"
-          placeholder="Escribe tus comentarios..."
+          label="Mensaje"
           multiline
           value={formState.comments}
           validation={validation.comments}
@@ -164,38 +165,27 @@ export const ContactForm = () => {
           />
         </div>
 
-        <div className={styles.btn_effect_container}>
-          <input
-            id="input-submit"
-            className={styles.btn_effect}
-            type="submit"
-            value="Enviar"
-            disabled={loading}
-          />
+        <div className={styles.actions}>
+          <button type="submit" className={buttonClass("primary")} disabled={loading}>
+            {loading ? "Enviando…" : "Enviar mensaje"}
+            <ArrowRightIcon className={buttonStyles.arrow} />
+          </button>
+          {loading && <Loader />}
         </div>
 
-        {loading && <Loader></Loader>}
-
         {response === "error" && (
-          <p className={styles.incorrect_response} role="alert">
-            No se pudo enviar el mensaje. Por favor, inténtalo nuevamente en
-            unos minutos.
+          <p className={styles.responseError} role="alert">
+            No se pudo enviar el mensaje. Por favor, inténtalo nuevamente en unos minutos.
+          </p>
+        )}
+
+        {response === "success" && (
+          <p className={styles.responseSuccess} role="status">
+            <CheckIcon size={20} />
+            ¡Gracias! Tu mensaje se envió correctamente.
           </p>
         )}
       </form>
-
-      {response === "success" && (
-        <div className={styles.correct_response} role="status">
-          <p>Los datos han sido enviados correctamente</p>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 512 512"
-            aria-hidden="true"
-          >
-            <path d="M256 512c141.4 0 256-114.6 256-256S397.4 0 256 0S0 114.6 0 256S114.6 512 256 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-          </svg>
-        </div>
-      )}
     </div>
   );
 };

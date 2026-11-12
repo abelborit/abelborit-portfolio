@@ -1,0 +1,104 @@
+/* botones y enlaces con forma de botón (se aplican a <a>, <Link> y <button>) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    transform 0.2s var(--ease-out),
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.primary:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+
+.secondary:hover {
+  border-color: var(--text);
+}
+
+.tertiary {
+  min-height: 44px;
+  padding: 0 4px;
+  background: none;
+  color: var(--text-2);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 6px;
+}
+
+.tertiary:hover {
+  color: var(--text);
+}
+
+.small {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* flecha que se desplaza al pasar el cursor */
+.arrow {
+  flex: none;
+  transition: transform 0.2s var(--ease-out);
+}
+
+.btn:hover .arrow,
+.textLink:hover .arrow {
+  transform: translateX(3px);
+}
+
+/* enlace de texto con flecha ("Conocer más sobre mí →") */
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  color: var(--text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.textLabel {
+  border-bottom: 1px solid var(--border-strong);
+  transition: border-color 0.2s ease;
+}
+
+.textLink:hover .textLabel {
+  border-color: var(--text);
+}

@@ -1,180 +1,255 @@
+/* ============================================================
+   Tokens del diseño
+   - modo oscuro: paleta "Dark Bento" (azul marino, coral y dorado)
+   - modo claro: paleta "Casos de Estudio"
+   El tema se aplica con data-theme en <html> (ver el script de index.html y useTheme)
+   ============================================================ */
 :root {
-  --backgroundColor: #212529;
-  /* --backgroundColor: #828c96; */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
 
-  --primaryColor: #072142;
-  --primaryColorHover: #2e4b70;
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
 
-  --secondaryColor: #ff4d5a;
-  --secondaryColorHover: #a63239;
+  /* ancho máximo con el padding lateral incluido (1200px de contenido + 2 × 40px) */
+  --container: 1280px;
+  --gutter: clamp(16px, 4vw, 40px);
+  --header-height: 65px;
 
-  --accentColor: #f5d198;
-  --accentColorHover: #e0ac69;
-  /* --accentColor: #f27d57; */
-  /* --accentColorHover: #bd6244; */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
 
-  --textColorDark: #2b2f33;
-  --textColorWhite: #ecf0f1;
-  --textColorWhiteHover: #828c96;
+:root,
+:root[data-theme="dark"] {
+  --bg: #060e1b;
+  --surface: #0c1a2d;
+  --surface-2: #10233b;
+  --border: #1a2c44;
+  --border-strong: #2a3f5c;
+  --text: #eef2f6;
+  --text-2: #c9d3df;
+  --muted: #9aa8ba;
+  /* botón principal y logo (sobre coral el texto va oscuro: el blanco no llega a 4.5:1) */
+  --primary: #ff4d5a;
+  --on-primary: #160308;
+  /* acento: empresas, frase destacada, marco de la foto, subrayado del menú */
+  --hl: #f5d198;
+  --on-hl: #1a1406;
+  --chip: #10233b;
+  --chip-text: #c9d3df;
+  --header-bg: rgba(6, 14, 27, 0.82);
+  --focus: #f5d198;
+  --success: #4fd1a5;
+  --danger: #ff8a93;
+  color-scheme: dark;
+}
 
-  --correctColor: #1ec896;
-  --incorrectColor: #dc3545;
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f4f6fa;
+  --surface-2: #ffffff;
+  --border: #e6eaf0;
+  --border-strong: #cbd5e1;
+  --text: #0f172a;
+  --text-2: #334155;
+  --muted: #475569;
+  --primary: #072142;
+  --on-primary: #ffffff;
+  --hl: #c2303d;
+  --on-hl: #ffffff;
+  --chip: #eef2f8;
+  --chip-text: #1e3a5f;
+  --header-bg: rgba(255, 255, 255, 0.86);
+  --focus: #2f6fd6;
+  --success: #12795b;
+  --danger: #b4232f;
+  color-scheme: light;
+}
+
+/* ============================================================
+   Reset y base
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
 }
 
 html {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  font-family: sans-serif;
-  font-size: 16px;
-  /* sin "scroll-behavior: smooth" global: al cambiar de ruta el scroll debe ser instantáneo. Los desplazamientos suaves (secciones y botón "subir") usan behavior: "smooth" en JS */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   overflow-x: hidden;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  -webkit-box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+  /* el header es fijo: deja espacio al hacer scroll hacia un ancla (#contacto) */
+  scroll-padding-top: calc(var(--header-height) + 16px);
 }
 
 body {
-  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif; */
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #020b16;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease;
 }
 
-/* ***** CSS a la barra de scroll ***** */
-body::-webkit-scrollbar {
-  /* display: none; */
-  width: 0.6vw;
-}
-
-body::-webkit-scrollbar-track {
-  background: linear-gradient(
-    to bottom,
-    #072142,
-    #061c37,
-    #07182b,
-    #061220,
-    #020b16
-  );
-}
-
-body::-webkit-scrollbar-thumb {
-  background: var(--secondaryColor);
-  border-radius: 30px;
-}
-
-body::-webkit-scrollbar-thumb:hover {
-  background: var(--secondaryColorHover);
-}
-/* ************************************ */
-
-/* ********** CSS Generales ********** */
-a {
-  color: var(--primaryColor);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: none;
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 img {
-  max-width: 100%;
   height: auto;
+}
+
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+ul,
+ol {
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.15;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* todo lo que se puede pulsar muestra la mano */
+a,
+button,
+summary,
+label:has(> input[type="checkbox"]),
+label:has(> input[type="radio"]) {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--hl);
+  color: var(--on-hl);
+}
+
+/* ============================================================
+   Utilidades globales (pocas a propósito: el resto vive en CSS Modules)
+   ============================================================ */
+.wrap {
   width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
 }
 
-.section {
-  background-color: rgba(150, 150, 150, 0.2);
-  width: 98.5%;
-  max-width: 1300px;
-  height: 100%;
-  margin: 1rem auto;
-  padding: 3.5rem 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 20px;
-  -webkit-animation-name: vanishIn;
-  -webkit-animation-duration: 0.8s;
-  animation-name: vanishIn;
-  animation-duration: 0.8s;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
-@-webkit-keyframes vanishIn {
-  0% {
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* tarjeta base del diseño y su elevación al pasar el cursor */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition:
+    background-color 0.35s ease,
+    border-color 0.25s ease,
+    transform 0.35s var(--ease-out);
+}
+
+.lift:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+}
+
+/* entrada de los elementos al montar cada página (solo transform y opacity: no provoca reflow) */
+/* "backwards" aplica el estado inicial durante el retraso y, al terminar, deja libres los estilos normales
+   (con "both" el transform quedaría fijado y bloquearía la elevación de .lift al pasar el cursor) */
+.reveal {
+  animation: reveal 0.6s var(--ease-out) backwards;
+}
+
+@keyframes reveal {
+  from {
     opacity: 0;
-    transform-origin: 50% 50%;
-    transform: scale(1, 1);
-    filter: blur(90px);
+    transform: translateY(14px);
   }
-  100% {
+  to {
     opacity: 1;
-    transform-origin: 50% 50%;
-    transform: scale(1, 1);
-    filter: blur(0px);
+    transform: none;
   }
 }
 
-@keyframes vanishIn {
-  0% {
-    opacity: 0;
-    transform-origin: 50% 50%;
-    transform: scale(1, 1);
-    filter: blur(90px);
+/* variante para los títulos principales (el elemento LCP): solo se desplaza, sin partir de opacidad 0,
+   así el navegador lo cuenta como pintado desde el primer momento */
+.reveal-title {
+  animation: reveal-title 0.6s var(--ease-out) backwards;
+}
+
+@keyframes reveal-title {
+  from {
+    transform: translateY(14px);
   }
-  100% {
-    opacity: 1;
-    transform-origin: 50% 50%;
-    transform: scale(1, 1);
-    filter: blur(0px);
+  to {
+    transform: none;
   }
 }
 
-/* .section-title {
-  margin-bottom: 2rem;
+/* respeta a quien desactivó las animaciones en su sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
-
-.section-title > h3 {
-  text-align: center;
-  width: 300px;
-  font-size: 2.6rem;
-  color: var(--textColorDark);
-  opacity: 0.9;
-  margin-bottom: 0.4rem;
-  padding: 0.3rem;
-  border-image: linear-gradient(
-      to right,
-      transparent 0%,
-      var(--primaryColor) 30%,
-      var(--primaryColor) 50%,
-      var(--primaryColor) 70%,
-      transparent 100%
-    )
-    1;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  letter-spacing: 3px;
-}
-
-.section-title > h4 {
-  text-align: center;
-  width: 300px;
-  font-size: 2rem;
-  color: var(--textColorDark);
-  opacity: 0.5;
-  letter-spacing: 3px;
-} */
-
-/* *********************************** */

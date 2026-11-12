@@ -1,0 +1,120 @@
+/* constelación de la portada: SVG animado solo con CSS (transform, opacity y stroke-dashoffset) */
+.wrapper {
+  width: 100%;
+  max-width: 520px;
+  margin-inline: auto;
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.float {
+  animation: float 9s ease-in-out infinite alternate;
+}
+
+.line {
+  stroke: var(--border-strong);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+  /* las líneas se "dibujan" al entrar */
+  stroke-dasharray: 300;
+  stroke-dashoffset: 0;
+  animation: draw 1.8s var(--ease-out) both;
+}
+
+.star {
+  fill: var(--hl);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: twinkle 3.2s ease-in-out infinite alternate;
+  transition: fill 0.2s ease;
+}
+
+.core {
+  fill: var(--primary);
+}
+
+.glow {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 1.5;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pulse 2.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.dust {
+  fill: var(--text-2);
+  opacity: 0.35;
+  animation: dust 4s ease-in-out infinite alternate;
+}
+
+.label {
+  fill: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-anchor: middle;
+  transition: fill 0.2s ease;
+}
+
+.node:hover .label {
+  fill: var(--text);
+}
+
+.node:hover .star {
+  fill: var(--text);
+}
+
+@keyframes float {
+  from {
+    transform: translateY(-6px);
+  }
+  to {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 300;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes twinkle {
+  from {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.6);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+}
+
+@keyframes dust {
+  from {
+    opacity: 0.12;
+  }
+  to {
+    opacity: 0.6;
+  }
+}

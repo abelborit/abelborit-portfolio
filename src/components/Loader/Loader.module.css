@@ -11,10 +11,10 @@
   height: 60px;
   background: linear-gradient(
     45deg,
-    var(--accentColorHover),
-    var(--accentColor),
-    var(--accentColor),
-    var(--accentColorHover)
+    var(--hl),
+    var(--hl),
+    var(--hl),
+    var(--hl)
   );
   margin: 2.5px;
   border-radius: 5px;

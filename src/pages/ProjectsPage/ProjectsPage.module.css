@@ -1,162 +1,72 @@
-/* ******************************* Section Content ******************************* */
-.portfolio_content {
+.toolbar {
+  margin-top: 32px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 24px;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter {
+  min-height: 40px;
+  padding: 0 16px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-strong);
+  background: transparent;
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.filter:hover {
+  border-color: var(--text);
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--bg);
+}
+
+.count {
+  font-size: 14px;
+  color: var(--muted);
+}
+
+/* dos columnas a desnivel que se llenan de izquierda a derecha (1º izq., 2º der., 3º izq.…).
+   En móvil las columnas se "disuelven" (display: contents) y "order" recupera el orden original */
+.columns {
+  margin-top: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.column {
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-  padding: 2.5rem;
-  gap: 40px;
+  gap: 16px;
 }
 
-.project_card {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  max-width: 700px;
-  width: 100%;
-  height: auto;
-  padding: 1.2rem;
-  background-color: transparent;
-  outline: none;
-  outline: 1px solid var(--primaryColor);
-  border-radius: 20px;
-  transition: all 0.3s ease;
-}
-
-.project_card:hover {
-  outline: 1px solid var(--secondaryColor);
-  transform: scale(0.95);
-}
-
-.project_card:hover .project_card_info .card_info_title {
-  color: var(--secondaryColor);
-}
-
-/* .border_effect {
-  outline: none;
-  position: relative;
-  z-index: 0;
-  border-radius: 40px;
-  overflow: hidden;
-  padding: 1rem;
-  box-shadow: -10px -10px 10px -10px rgba(0, 0, 0, 0.4),
-    10px 10px 10px -10px rgba(0, 0, 0, 0.4);
-}
-
-.border_effect::before {
-  content: "";
-  position: absolute;
-  z-index: -2;
-  left: -50%;
-  top: -50%;
-  width: 200%;
-  height: 200%;
-  background-color: #333;
-  background-repeat: no-repeat;
-  background-position: 0 0;
-  color: rgba(168, 239, 255, 1);
-  background-image: conic-gradient(
-    transparent,
-    rgba(30, 200, 150, 1),
-    rgba(30, 200, 150, 1),
-    transparent 30%
-  );
-  animation: rotate 4s linear infinite;
-}
-
-.border_effect::after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 6px;
-  top: 6px;
-  width: calc(100% - 12px);
-  height: calc(100% - 12px);
-  background-color: #b8b8b8;
-  border-radius: 30px;
-}
-
-@keyframes rotate {
-  100% {
-    transform: rotate(1turn);
-  }
-} */
-
-.project_card_info {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.project_card_info .card_info_title {
-  width: 100%;
-  text-align: left;
-  font-size: 1.2rem;
-  color: var(--primaryColor);
-  margin-bottom: 0.4rem;
-}
-
-.project_card_info .card_info_client {
-  width: 100%;
-  text-align: left;
-  font-size: 0.9rem;
-  color: var(--textColorWhiteHover);
-  margin-bottom: 0.6rem;
-  font-style: italic;
-}
-
-.project_card_info .card_info_description {
-  text-align: justify;
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: var(--textColorDark);
-}
-
-@media screen and (min-width: 768px) {
-  .portfolio_content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: auto;
-    padding: 2.5rem;
-    gap: 20px;
+@media (max-width: 920px) {
+  .columns {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .project_card {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .project_card {
-    width: 100%;
-    height: 100%;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .portfolio_content {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .card_date span {
-    font-size: 1rem;
-  }
-
-  .project_card_info .card_info_title {
-    font-size: 1.25rem;
-  }
-
-  .project_card_info .card_info_description {
-    font-size: 1rem;
+  .column {
+    display: contents;
   }
 }
