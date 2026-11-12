@@ -14,7 +14,8 @@
       rel="canonical"
       href="https://abelborit.github.io/abelborit-portfolio/"
     />
-    <meta name="theme-color" content="#072142" />
+    <!-- color de la barra del navegador en móvil: se ajusta al tema en el script de abajo -->
+    <meta name="theme-color" content="#060E1B" />
 
     <!-- Open Graph / redes sociales: título y descripción al compartir el enlace (LinkedIn, WhatsApp, etc.) -->
     <meta property="og:type" content="website" />
@@ -38,8 +39,25 @@
     <link rel="icon" href="/abelborit-portfolio/favicon.ico" />
     <link rel="apple-touch-icon" href="/abelborit-portfolio/logo192.png" />
     <link rel="manifest" href="/abelborit-portfolio/manifest.json" />
-    <script type="module" crossorigin src="/abelborit-portfolio/assets/index-B2XTOTSC.js"></script>
-    <link rel="stylesheet" crossorigin href="/abelborit-portfolio/assets/index-BS8z1X5h.css">
+
+    <!-- el tema se aplica antes de pintar la página para evitar el parpadeo (modo elegido antes por el usuario o, si no hay, el de su sistema) -->
+    <script>
+      (function () {
+        var theme = "dark";
+        try {
+          var stored = localStorage.getItem("theme");
+          if (stored === "light" || stored === "dark") theme = stored;
+          else if (window.matchMedia("(prefers-color-scheme: light)").matches) theme = "light";
+        } catch (e) {
+          /* localStorage no disponible: se usa el modo oscuro */
+        }
+        document.documentElement.dataset.theme = theme;
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) meta.setAttribute("content", theme === "light" ? "#FFFFFF" : "#060E1B");
+      })();
+    </script>
+    <script type="module" crossorigin src="/abelborit-portfolio/assets/index-CQyRicc9.js"></script>
+    <link rel="stylesheet" crossorigin href="/abelborit-portfolio/assets/index-WWe9vxxz.css">
     <script>
       (function (w, d, s, l, i) {
         if (w.location.hostname !== "abelborit.github.io") return;
