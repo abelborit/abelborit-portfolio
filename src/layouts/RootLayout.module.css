@@ -1,0 +1,28 @@
+/* enlace "Saltar al contenido": invisible hasta que recibe el foco con el teclado */
+.skip {
+  position: absolute;
+  top: -64px;
+  left: 16px;
+  z-index: 50;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--text);
+  color: var(--bg);
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip:focus {
+  top: 12px;
+}
+
+.main {
+  display: block;
+  min-height: 60vh;
+}
+
+/* el <main> recibe el foco al cambiar de página (para lectores de pantalla), sin marco visible */
+.main:focus {
+  outline: none;
+}

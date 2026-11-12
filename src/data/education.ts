@@ -1,26 +1,21 @@
-import type { TimelineItem } from "../types/content";
+import type { Education } from "../types/content";
 
-/* estudios y formación (de más reciente a más antiguo) */
-export const EDUCATION: TimelineItem[] = [
+/* formación, de la más reciente a la más antigua (fuente: CV) */
+export const EDUCATION: Education[] = [
   {
     title: "Frontend Developer (autodidacta)",
+    period: "Nov 2020 — Actualidad",
     description:
-      "Desarrollador Frontend desde el 2020 usando diversas herramientas como React, TypeScript, Gatsby, HTML & CSS, manejadores de estado como Zustand, manejo de caché en peticiones como TanStack Query, entre otras y tratando de aprender algo nuevo cada día.",
-    to: "Actualidad",
-    since: "Nov 2020",
+      "Desarrollo frontend con React, TypeScript, Gatsby, HTML y CSS, Zustand y TanStack Query, aprendiendo algo nuevo cada día.",
   },
   {
-    title: "Investigación en Ingeniería en la UCV",
-    description:
-      "Logro obtenido tras culminar curso de investigación en Ingeniería para obtener grado profesional.",
-    to: "Jun 2022",
-    since: "Ene 2022",
+    title: "Investigación en Ingeniería · UCV",
+    period: "Ene 2022 — Jun 2022",
+    description: "Curso de investigación en Ingeniería para obtener el grado profesional.",
   },
   {
-    title: "Grado en Ingeniería en la UJCM",
-    description:
-      "Logro obtenido tras culminar satisfactoriamente los estudios universitarios para conseguir el Grado en Ingeniería (Perteneciente al Top 10).",
-    to: "Dic 2019",
-    since: "Abr 2015",
+    title: "Grado en Ingeniería · UJCM",
+    period: "Abr 2015 — Dic 2019",
+    description: "Estudios universitarios culminados con el Grado en Ingeniería, dentro del Top 10.",
   },
 ];

@@ -4,6 +4,14 @@ import { createRoot } from "react-dom/client";
 import App from "./App";
 import { router } from "./router";
 
+/* fuentes servidas desde el propio sitio (sin peticiones a Google Fonts): solo el subconjunto latino y los pesos que usa el diseño. Usan "font-display: swap", así el texto se muestra de inmediato con la fuente del sistema mientras cargan */
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-500.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/space-grotesk/latin-600.css";
+import "@fontsource/space-grotesk/latin-700.css";
+import "@fontsource/jetbrains-mono/latin-500.css";
+
 import "./index.css";
 
 /* las páginas se cargan con "lazy" (archivos JS separados con hash en el nombre). Tras un nuevo deploy, los archivos antiguos dejan de existir y una pestaña que se abrió antes del deploy fallaría al navegar. En ese caso se recarga la página una vez para obtener la versión nueva. https://vite.dev/guide/build#load-error-handling */

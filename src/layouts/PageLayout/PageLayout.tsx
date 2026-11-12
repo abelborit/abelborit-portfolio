@@ -1,115 +1,67 @@
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Link } from "react-router";
-import { Header } from "../../components/Header/Header";
-import { DoubleArrowLeftIcon } from "../../components/icons/DoubleArrowLeftIcon";
+import { buttonClass, buttonStyles } from "../../components/Button/button";
+import { CvDownloadLink } from "../../components/Button/CvDownloadLink";
+import { ArrowRightIcon } from "../../components/icons";
 import { GTM_EVENTS } from "../../utils/gtm";
 import styles from "./PageLayout.module.css";
 
 interface PageLayoutProps {
-  /* imagen de fondo del hero (import de un .webp) */
-  image: string;
-  title: string;
-  description: string;
-  /* valor de "section" que se envía a GTM al pulsar "Regresar" */
-  gtmSection: string;
-  /* valor de "section" para el enlace del footer. Si no se indica se usa gtmSection */
-  footerGtmSection?: string;
+  /* valor de "section" que se envía a GTM al pulsar "Volver al inicio" */
+  backGtmSection: string;
+  /* valor de "section" del botón "Contactar" del bloque final */
+  ctaGtmSection: string;
   children: ReactNode;
 }
 
-/* estructura común de las páginas internas (sobre mí, estudios/experiencia y proyectos): header, hero con título y botón "Regresar", secciones y footer */
-export const PageLayout = ({
-  image,
-  title,
-  description,
-  gtmSection,
-  footerGtmSection = gtmSection,
-  children,
-}: PageLayoutProps) => {
-  const imageStyle = { "--page-image": `url(${image})` } as CSSProperties;
+/* estructura común de las páginas internas: "Volver al inicio", contenido y bloque final de contacto */
+export const PageLayout = ({ backGtmSection, ctaGtmSection, children }: PageLayoutProps) => (
+  <>
+    <div className={`wrap ${styles.page}`}>
+      <Link
+        to="/home"
+        className={buttonClass("tertiary", { className: "reveal" })}
+        onClick={() => GTM_EVENTS.GenericRedirect({ new_location: "/home", section: backGtmSection })}
+      >
+        ← Volver al inicio
+      </Link>
+    </div>
 
-  return (
-    <>
-      <Header />
+    {children}
 
-      <div className={`${styles.section} ${styles.slideLeftReturn}`}>
-        <div
-          className={`${styles.image_container} ${styles.slideRightReturn}`}
-          style={imageStyle}
-        ></div>
-
-        <div className={styles.title_container}>
-          <h1 className={styles.title_text}>{title}</h1>
-
-          <div className={styles.border_container}>
-            <span className={styles.border_first}></span>
-            <span className={styles.border_second}></span>
-          </div>
-
-          <p className={styles.description}>{description}</p>
-
-          <div className={styles.btnBack_effect_container}>
-            <Link
-              className={styles.btnBack_effect}
-              to="/home"
-              onClick={() =>
-                GTM_EVENTS.GenericRedirect({
-                  new_location: "/home",
-                  section: gtmSection,
-                })
-              }
-            >
-              <DoubleArrowLeftIcon />
-
-              <span>Regresar</span>
-            </Link>
-          </div>
+    <section className={`wrap ${styles.cta}`} aria-labelledby="cta-title">
+      <div className={`surface ${styles.ctaCard}`}>
+        <div className={styles.ctaText}>
+          <h2 id="cta-title" className={styles.ctaTitle}>
+            Empecemos a trabajar juntos
+          </h2>
+          <p>Cuéntame sobre el rol o el proyecto y te respondo lo antes posible.</p>
         </div>
-      </div>
-
-      {children}
-
-      <footer className={styles.footer_section}>
-        <Link
-          className={styles.footer}
-          to="/home"
-          onClick={() =>
-            GTM_EVENTS.GenericRedirect({
-              new_location: "/home",
-              section: footerGtmSection,
-            })
-          }
-        >
-          Empecemos a trabajar juntos
-        </Link>
-      </footer>
-    </>
-  );
-};
-
-interface PageSectionProps {
-  /* número que se muestra junto al título: "01", "02"... */
-  number: string;
-  title: string;
-  children: ReactNode;
-}
-
-/* sección numerada de una página interna */
-export const PageSection = ({ number, title, children }: PageSectionProps) => {
-  return (
-    <section className={styles.section_container}>
-      <div className={styles.section_content}>
-        <div className={styles.section_title}>
-          <div className={styles.section_title_number}>
-            <div></div>
-            <span>{number}</span>
-          </div>
-
-          <h2 className={styles.section_title_text}>{title}</h2>
+        <div className={styles.ctaActions}>
+          <Link
+            to="/home#contacto"
+            className={buttonClass("primary")}
+            onClick={() => GTM_EVENTS.GenericRedirect({ new_location: "/home", section: ctaGtmSection })}
+          >
+            Contactar
+            <ArrowRightIcon className={buttonStyles.arrow} />
+          </Link>
+          <CvDownloadLink />
         </div>
-
-        {children}
       </div>
     </section>
-  );
-};
+  </>
+);
+
+/* encabezado de una página interna: etiqueta, título y descripción */
+export const PageIntro = ({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) => (
+  <header className={`wrap ${styles.intro}`}>
+    <p className="eyebrow reveal">{eyebrow}</p>
+    <h1 className={`reveal-title ${styles.title}`} style={{ animationDelay: "60ms" }}>
+      {title}
+    </h1>
+    <p className={`reveal ${styles.description}`} style={{ animationDelay: "100ms" }}>
+      {description}
+    </p>
+  </header>
+);

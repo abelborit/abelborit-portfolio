@@ -17,6 +17,9 @@ export interface FormState {
 
 export type FormField = keyof FormState;
 
+/* motivos de contacto: casillas opcionales (se pueden marcar varias); este orden es el que se usa al enviarlos */
+export const REASONS = ["Oportunidad laboral", "Proyecto", "Otro"] as const;
+
 /* null = el campo aún no se ha tocado (se muestra con el estilo base), "" = válido, texto = mensaje de error */
 export type FieldValidation = string | null;
 export type FormValidation = Record<FormField, FieldValidation>;
@@ -107,6 +110,8 @@ export const useForm = () => {
   const [formState, setFormState] = useState(initialForm);
   const [validation, setValidation] = useState(initialValidation);
   const [honeypot, setHoneypot] = useState("");
+  /* motivos de contacto marcados (casillas opcionales: se pueden marcar varias) */
+  const [reasons, setReasons] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<FormResponseStatus>(null);
 
@@ -160,6 +165,14 @@ export const useForm = () => {
     setHoneypot(e.target.value);
   };
 
+  const handleReasonChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+    /* se guardan siempre en el orden de los botones, no en el orden en que se marcaron */
+    setReasons((prev) =>
+      REASONS.filter((reason) => (reason === value ? checked : prev.includes(reason))),
+    );
+  };
+
   const showSuccessAndReset = () => {
     setResponse("success");
 
@@ -167,6 +180,7 @@ export const useForm = () => {
     resetTimer.current = setTimeout(() => {
       setFormState(initialForm);
       setValidation(initialValidation);
+      setReasons([]);
       setResponse(null);
     }, 3000);
   };
@@ -195,6 +209,7 @@ export const useForm = () => {
       .post<FormSubmitResponse>(FORMSUBMIT_ENDPOINT, {
         body: {
           ...data,
+          motivo: reasons.length ? reasons.join(", ") : "Sin especificar",
           /* opciones de formsubmit: asunto del correo recibido, formato en tabla y campo trampa */
           _subject: `Portafolio: ${data.subject}`,
           _template: "table",
@@ -226,12 +241,14 @@ export const useForm = () => {
     formState,
     validation,
     honeypot,
+    reasons,
     loading,
     response,
 
     handleChange,
     handleBlur,
     handleHoneypotChange,
+    handleReasonChange,
     handleSubmit,
   };
 };

@@ -1,0 +1,115 @@
+.card {
+  padding: clamp(22px, 2.6vw, 30px);
+  border-radius: var(--radius-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 4px 16px;
+  font-size: 13px;
+}
+
+.companyLine {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 2px 14px;
+}
+
+.company {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--hl);
+}
+
+.client {
+  color: var(--text-2);
+}
+
+.clientLabel {
+  margin-right: 6px;
+  font-size: 11px;
+}
+
+.period {
+  font-family: var(--font-mono);
+  color: var(--muted);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2vw, 24px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.role {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+
+.role strong {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.details dt {
+  font-size: 11.5px;
+}
+
+.details dd {
+  margin-top: 4px;
+  font-size: 15px;
+  color: var(--text-2);
+}
+
+/* "Valor agregado": solo en los proyectos con "Adicional" en el CV */
+.value {
+  padding: 16px 18px;
+  border-radius: 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.value dt {
+  color: var(--hl);
+}
+
+.valueList {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+}
+
+.valueList li {
+  display: flex;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.valueList svg {
+  flex: none;
+  margin-top: 3px;
+  color: var(--hl);
+}
+
+.footer {
+  margin-top: auto;
+}

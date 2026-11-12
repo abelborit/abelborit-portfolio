@@ -1,0 +1,26 @@
+.strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 40px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+
+/* la lista se "disuelve" para que sus elementos se alineen junto a la etiqueta */
+.list {
+  display: contents;
+  list-style: none;
+}
+
+.company {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+
+.others {
+  font-size: 15px;
+  color: var(--muted);
+}
